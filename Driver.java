@@ -1,75 +1,36 @@
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+
 public class Driver
 {
-    public static void main(String[]args)
+  public static void main(String[] args)
+  {
+    Object[] possibleValues = { "Easy" , "Medium", "Hard"};
+    String difficulty = (String)JOptionPane.showInputDialog(null,
+                    "Difficulty?", "Input",
+                    JOptionPane.INFORMATION_MESSAGE, null,
+                    possibleValues, possibleValues[0]);
+    if (difficulty.equals("Easy"))
     {
-
-        Key3 dungeon = new Key3();
-
-        boolean key3Start = true;
-        boolean restart = true;
-        boolean gameOver = false;
-        dungeon.setTotalSticks(21);
-
-        while (key3Start == true)
-        {
-            String startDungeon = dungeon.dungeonStart();
-
-            // checks if the player wants to play the game/enter dungeon and starts/exits accordingly
-            if (startDungeon.equalsIgnoreCase("Dungeon"))
-            {
-                System.out.println(dungeon.dungeonGameDescription);
-
-            /*    if (gameOver == false)
-                { */
-                    String first_second = dungeon.playerChoice();
-
-                    if (first_second.equals("First"))
-                    {
-                        System.out.println("hellothere");
-                        dungeon.sticks21first();
-                        key3Start = false;
-                    }
-                    else
-                    {
-                        dungeon.sticks21second();
-                        key3Start = false;
-                    }
-
-                /*    String playAgain = dungeon.restartGame();
-                    if (playAgain.equalsIgnoreCase("Yes"))
-                    {
-                        gameOver = false;
-                    }
-                    else
-                    {
-                        System.out.println("You leave the room.");
-                        gameOver = true;
-                        key3Start = false;
-                    }
-                    */
-                }
-            else
-            {
-                System.out.println("You have gone back");
-                key3Start = false;
-
-            }
-
-        }
+      Key5V2 boiler = new Key5V2(100);
+      boiler.play();
     }
+
+    else if (difficulty.equals("Medium"))
+    {
+      Key5V2 boiler = new Key5V2(80);
+      boiler.play();
+    }
+
+    else if (difficulty.equals("Hard"))
+    {
+      Key5V2 boiler = new Key5V2(45);
+      boiler.play();
+    }
+
+  }
 }
-
-
-
-
-/*
-String playAgain = dungeon.restartGame();
-if (playAgain.equals("Yes"))
-{
-    restart = true;
-}
-else
-{
-    restart = false;
-}
-*/
