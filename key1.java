@@ -1,148 +1,151 @@
-//@author Erika Fung
-
 import java.util.Scanner;
 import java.util.Random;
+import javax.swing.JOptionPane;
+//---------------------------------------------------------------------------------------------------------
 
 public class key1
 {
-  //main code
+  //initialize keyboard and public variables gameOn (controls if level runs) and lives (differ depending on difficulty)
   Scanner keyboard = new Scanner(System.in);
   public boolean gameOn;
   public int lives;
+  public boolean key1;
+//---------------------------------------------------------------------------------------------------------
 
-
-  //method for starting game
+  //determine if play will start the level
+  //returns: boolean
   public boolean startgamemethod() {
-  System.out.print("Start the library level? (yes or no): ");
-  boolean gameOn = false;
-  boolean inputneeded = true;
-  while (inputneeded) {
-    String newgame = keyboard.next();
+    JOptionPane.showMessageDialog(null, "Behind this door are 4 puzzles you must complete to obtain a key.");
+    Object[] possibleValues = { "yes", "no" };
+    String newgame = (String)JOptionPane.showInputDialog(null,
+                    "You have entered the library. Start this level? ", "Input",
+                    JOptionPane.INFORMATION_MESSAGE, null,
+                    possibleValues, possibleValues[0]);
     if (newgame.equals("yes")) {
       gameOn = true;
-      inputneeded = false;
-      System.out.println("Welcome! ");
+        JOptionPane.showMessageDialog(null, "Welcome! ");
       //start game
     }
-    else if (newgame.equals("no")) {
+    else {
       gameOn = false;
-      inputneeded = false;
-      System.out.println("Goodbye! ");
+        JOptionPane.showMessageDialog(null, "Goodbye! ");
       //stay on start page
     }
-    else {
-      System.out.print("Invalid option. Start the library level? (yes or no)");
-    }
-  }
-  return gameOn;
+    return gameOn;
 }
+//---------------------------------------------------------------------------------------------------------
 
-  //method for selecting difficulty
+  //determine difficulty (changes number of lives from 5 (easy) to 3 (hard))
+  //returns: number of lives
   public int difficultymethod() {
-  System.out.print("Difficulty? (easy, medium, hard) ");
-  String difficulty = keyboard.next();
-  boolean difficultyneeded = false;
-  while (!difficultyneeded) {
+    Object[] possibleValues = { "easy", "medium", "hard" };
+    String difficulty = (String)JOptionPane.showInputDialog(null,
+                    "Difficulty?", "Input",
+                    JOptionPane.INFORMATION_MESSAGE, null,
+                    possibleValues, possibleValues[0]);
     if (difficulty.equals("easy")) {
-    //implement easy (5 lives)
-    lives = 5;
-    difficultyneeded = true;
-    }
-    else if (difficulty.equals("medium")) {
-    //implement medium (4 lives)
-    lives = 4;
-    difficultyneeded = true;
+      lives = 5;
+      JOptionPane.showMessageDialog(null, "You have 5 lives. ");
     }
     else if (difficulty.equals("hard")) {
-    //implement hard (3 lives)
-    lives = 3;
-    difficultyneeded = true;
+      lives = 3;
+      JOptionPane.showMessageDialog(null, "You have 3 lives. ");
     }
     else {
-    System.out.println("That is not a vaild difficulty");
-    System.out.print("Difficulty? (easy, medium, hard) ");
-    difficulty = keyboard.next();
+      lives = 4;
+      JOptionPane.showMessageDialog(null, "You have 4 lives. ");;
     }
+    return lives;
   }
-  return lives;
-  }
+//---------------------------------------------------------------------------------------------------------
 
-//puzzle one method
+// 3 riddles that will display one after another if the previous answer is right
+//if the asnwer is wrong, the lives will go down
+//if there are 0 lives, the riddles will not be displayed and the method will finish
+//contains 3 booleans that determine if the 3 riddles are correct
+//returns: riddleboolean
 public boolean puzzle1method(){
 
   boolean riddle1boolean = false;
-
+  //riddle 1
   while ((!riddle1boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
-    System.out.println("Riddle 1");
-    System.out.print("What is a 7 letter word containing thousands of letters? ");
-    String riddle1raw = keyboard.next();
+    //System.out.println("Lives: " + lives);
+    //System.out.println("Riddle 1");
+    //System.out.print("What is a 7 letter word containing thousands of letters? ");
+    String riddle1raw = JOptionPane.showInputDialog("Riddle 1: What is a 7 letter word containing thousands of letters?  ");
     String riddle1 = riddle1raw.toLowerCase();
     if (riddle1.equals("mailbox") && lives > 1)
     {
-      System.out.println("Correct!");
+      //answer is correct
+      JOptionPane.showMessageDialog(null, "Correct! ");
       riddle1boolean = true;
     }
     else
     {
-      System.out.println("Incorrect. ");
+      //answer is incorrect and player has remaining lives
+      JOptionPane.showMessageDialog(null, "Incorrect. ");
       lives = lives - 1;
       if (lives < 1)
       {
-        System.out.println("You have no more lives!");
+        //player is out of lives and method ends
+        JOptionPane.showMessageDialog(null, "You have no more lives!");
         gameOn = false;
       }
     }
   }
 
   boolean riddle2boolean = false;
-
+  //riddle 2
   while ((!riddle2boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
-    System.out.println("Riddle 2");
-    System.out.print("What is it that after you take away the whole, some still remains? ");
-    String riddle2raw = keyboard.next();
+    //System.out.println("Lives: " + lives);
+    //System.out.println("Riddle 2");
+    String riddle2raw = JOptionPane.showInputDialog("Riddle 2: What is it that after you take away the whole, some still remains? ");
     String riddle2 = riddle2raw.toLowerCase();
     if (riddle2.equals("wholesome") && lives > 1)
     {
-      System.out.println("Correct!");
+      //answer is correct
+      JOptionPane.showMessageDialog(null, "Correct!");
       riddle2boolean = true;
     }
     else
     {
-      System.out.println("Incorrect. ");
+      //answer is incorrect and player has remaining lives
+      JOptionPane.showMessageDialog(null, "Incorrect. ");
       lives = lives - 1;
       if (lives < 1)
       {
-        System.out.println("You have no more lives!");
+        //player is out of lives and method ends
+        JOptionPane.showMessageDialog(null, "You have no more lives!");
         gameOn = false;
       }
     }
   }
 
   boolean riddle3boolean = false;
-
+  //riddle 3
   while ((!riddle3boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
-    System.out.println("Riddle 3");
-    System.out.print("Name an eight letter word that has kst in the middle, in the beginning, and at the end. ");
-    String riddle3raw = keyboard.next();
+    //System.out.println("Lives: " + lives);
+    //System.out.println("Riddle 3");
+    String riddle3raw = JOptionPane.showInputDialog("Riddle 3: Name an eight letter word that has kst in the middle, in the beginning, and at the end. ");
     String riddle3 = riddle3raw.toLowerCase();
     if (riddle3.equals("inkstand") && lives > 1)
     {
-      System.out.println("Correct!");
+      //answer is correct
+      JOptionPane.showMessageDialog(null, "Correct!");
       riddle3boolean = true;
     }
     else
     {
-      System.out.println("Incorrect. ");
+      //answer is incorrect and player has remaining lives
+      JOptionPane.showMessageDialog(null, "Incorrect. ");
       lives = lives - 1;
       if (lives < 1)
       {
-        System.out.println("You have no more lives!");
+        //player is out of lives and method ends
+        JOptionPane.showMessageDialog(null, "You have no more lives!");
         gameOn = false;
       }
     }
@@ -150,32 +153,38 @@ public boolean puzzle1method(){
   boolean riddleboolean = true;
   return riddleboolean;
 }
+//---------------------------------------------------------------------------------------------------------
 
-//puzzle 2 method
+// 3 word unscrambles that will display one after another if the previous answer is right
+//if the asnwer is wrong, the lives will go down
+//if there are 0 lives, the unscrambles will not be displayed and the method will finish
+//contains 3 booleans that determine if the 3 unscrambles are correct
+//returns: unscrambleboolean
 public boolean puzzle2method() {
 
 boolean unscramble1boolean = false;
-
+//unscramble 1
 while ((!unscramble1boolean) && lives > 0)
 {
-  System.out.println("Lives: " + lives);
-  System.out.println("Word Unscramble 1");
-  System.out.println("Unscramble these letters into a word: N D U E D R E F ");
-  System.out.print("Your guess: ");
-  String unscramble1raw = keyboard.next();
+  //System.out.println("Lives: " + lives);
+  //System.out.println("Word Unscramble 1");
+  String unscramble1raw = JOptionPane.showInputDialog("Unscramble these letters into a word: N D U E D R E F ");
   String unscramble1 = unscramble1raw.toLowerCase();
   if (unscramble1.equals("refunded") && lives > 1)
   {
-    System.out.println("Correct!");
+    //answer is correct
+    JOptionPane.showMessageDialog(null, "Correct!");
     unscramble1boolean = true;
   }
   else
   {
-    System.out.println("Incorrect. ");
+    //answer is incorrect and player has remaining lives
+    JOptionPane.showMessageDialog(null, "Incorrect. ");
     lives = lives - 1;
     if (lives < 1)
     {
-      System.out.println("You have no more lives!");
+      //player is out of lives and method ends
+      JOptionPane.showMessageDialog(null, "You have no more lives!");
       gameOn = false;
     }
   }
@@ -185,24 +194,25 @@ boolean unscramble2boolean = false;
 
 while ((!unscramble2boolean) && lives > 0)
 {
-  System.out.println("Lives: " + lives);
-  System.out.println("Word Unscramble 2");
-  System.out.println("Unscramble these letters into a word: V R A E S N T O B ");
-  System.out.print("Your guess: ");
-  String unscramble2raw = keyboard.next();
+  //System.out.println("Lives: " + lives);
+  //System.out.println("Word Unscramble 2");
+  String unscramble2raw =JOptionPane.showInputDialog("Unscramble these letters into a word: V R A E S N T O B ");
   String unscramble2 = unscramble2raw.toLowerCase();
   if (unscramble2.equals("observant") && lives > 1)
   {
-    System.out.println("Correct!");
+    //answer is correct
+    JOptionPane.showMessageDialog(null, "Correct!");
     unscramble2boolean = true;
   }
   else
   {
-    System.out.println("Incorrect. ");
+    //answer is incorrect and player has remaining lives
+    JOptionPane.showMessageDialog(null, "Incorrect. ");
     lives = lives - 1;
     if (lives < 1)
     {
-      System.out.println("You have no more lives!");
+      //player is out of lives and method ends
+      JOptionPane.showMessageDialog(null, "You have no more lives!");
       gameOn = false;
     }
   }
@@ -212,24 +222,25 @@ boolean unscramble3boolean = false;
 
 while ((!unscramble3boolean) && lives > 0)
 {
-  System.out.println("Lives: " + lives);
-  System.out.println("Word Unscramble 3");
-  System.out.println("Unscramble these letters into a word: S F N L O I G M A ");
-  System.out.print("Your guess: ");
-  String unscramble3raw = keyboard.next();
+  //System.out.println("Lives: " + lives);
+  //System.out.println("Word Unscramble 3");
+  String unscramble3raw= JOptionPane.showInputDialog("Unscramble these letters into a word: S F N L O I G M A ");
   String unscramble3 = unscramble3raw.toLowerCase();
   if (unscramble3.equals("flamingos") && lives > 1)
   {
-    System.out.println("Correct!");
+    //answer is correct
+    JOptionPane.showMessageDialog(null, "Correct!");
     unscramble3boolean = true;
   }
   else
   {
-    System.out.println("Incorrect. ");
+    //answer is incorrect and player has remaining lives
+    JOptionPane.showMessageDialog(null, "Incorrect. ");
     lives = lives - 1;
     if (lives < 1)
     {
-      System.out.println("You have no more lives!");
+      //player is out of lives and method ends
+      JOptionPane.showMessageDialog(null, "You have no more lives!");
       gameOn = false;
     }
   }
@@ -237,8 +248,14 @@ while ((!unscramble3boolean) && lives > 0)
 boolean unscrambleboolean = true;
 return unscrambleboolean;
 }
+//---------------------------------------------------------------------------------------------------------
 
-//puzzle 3 method
+// 2 combination locks that will display one after another if the previous answer is right
+//the numbers for the combinations are randomly generated as numbers between 0 and 30
+//if the asnwer is wrong, the lives will go down
+//if there are 0 lives, the combinations will not be displayed and the method will finish
+//contains 2 booleans that determine if the 2 combinations are correct
+//returns: combinationboolean
 public boolean puzzle3method() {
 
   //set 3 random numbers between 0 and 30
@@ -248,27 +265,29 @@ public boolean puzzle3method() {
   String combostring1 = Integer.toString(combonum1);
   String combostring2 = Integer.toString(combonum2);
   String combostring3 = Integer.toString(combonum3);
+  //combination is num1 num3 num2
   String combo1 = (combostring1 + combostring3 + combostring2);
   boolean combo1boolean = false;
   while ((!combo1boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
-    System.out.println("Combination locks 1");
-    System.out.println("The numbers are: " + combonum1 + ", " + combonum2 + ", and " + combonum3);
-    System.out.println("Solve the combination lock to retrieve the key. (ex. 001122)");
-    String combo1raw = keyboard.next();
+    //System.out.println("Lives: " + lives);
+    //System.out.println("Combination locks 1");
+    String combo1raw = JOptionPane.showInputDialog("The numbers are: " + combonum1 + ", " + combonum2 + ", and " + combonum3 + ". Solve the combination (ex. 001122) ");
     if (combo1raw.equals(combo1) && lives > 1)
     {
-      System.out.println("Correct!");
+      //answer is correct
+      JOptionPane.showMessageDialog(null, "Correct!");
       combo1boolean = true;
     }
     else
     {
-      System.out.println("Incorrect. ");
+      //answer is incorrect and player has remaining lives
+      JOptionPane.showMessageDialog(null, "Incorrect. ");
       lives = lives - 1;
       if (lives < 1)
       {
-        System.out.println("You have no more lives!");
+        //player is out of lives and method ends
+        JOptionPane.showMessageDialog(null, "You have no more lives!");
         gameOn = false;
       }
     }
@@ -281,28 +300,29 @@ public boolean puzzle3method() {
   String combostring21 = Integer.toString(combonum21);
   String combostring22 = Integer.toString(combonum22);
   String combostring23 = Integer.toString(combonum23);
+  // combo is num2 num3 num1
   String combo2 = (combostring22 + combostring23 + combostring21);
   boolean combo2boolean = false;
-  System.out.println(combo2);
   while ((!combo2boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
-    System.out.println("Combination locks 2");
-    System.out.println("The numbers are: " + combonum21 + ", " + combonum22 + ", and " + combonum23);
-    System.out.println("Solve the combination lock to retrieve the key. (ex. 001122)");
-    String combo2raw = keyboard.next();
+    //System.out.println("Lives: " + lives);
+    //System.out.println("Combination locks 2");
+    String combo2raw = JOptionPane.showInputDialog("The numbers are: " + combonum21 + ", " + combonum22 + ", and " + combonum23 + ". Solve the combination (ex. 001122) ");
     if (combo2raw.equals(combo2) && lives > 1)
     {
-      System.out.println("Correct!");
+      //answer is correct
+      JOptionPane.showMessageDialog(null, "Correct!");
       combo2boolean = true;
     }
     else
     {
-      System.out.println("Incorrect. ");
+      //answer is incorrect and player has remaining lives
+      JOptionPane.showMessageDialog(null, "Incorrect. ");
       lives = lives - 1;
       if (lives < 1)
       {
-        System.out.println("You have no more lives!");
+        //player is out of lives and method ends
+        JOptionPane.showMessageDialog(null, "You have no more lives!");
         gameOn = false;
       }
     }
@@ -310,8 +330,13 @@ public boolean puzzle3method() {
   boolean combinationboolean = true;
   return combinationboolean;
 }
+//---------------------------------------------------------------------------------------------------------
 
-//puzzle 4 method
+// One last word puzzle
+//if the asnwer is wrong, the lives will go down
+//if there are 0 lives, the puzzle will not be displayed and the method will finish
+//contains 1 booleas that determines if the puzzle is correct
+//returns:  einsteinboolean
 public boolean puzzle4method() {
 
   boolean einsteinboolean = false;
@@ -346,20 +371,35 @@ public boolean puzzle4method() {
     String einstein = einsteinraw.toLowerCase();
     if (einstein.equals("german") && lives > 1)
     {
+      //answer is correct
       System.out.println("Correct!");
       einsteinboolean = true;
     }
     else
     {
+      //answer is incorrect and player has remaining lives
       System.out.println("Incorrect. ");
       lives = lives - 1;
       if (lives < 1)
       {
+        //player is out of lives and method ends
         System.out.println("You have no more lives!");
         gameOn = false;
       }
     }
   }
   return einsteinboolean;
+}
+
+public boolean key1control(boolean einsteinboolean, boolean unscrambleboolean, boolean riddleboolean) {
+  if (einsteinboolean && unscrambleboolean && riddleboolean) {
+    key1 = true;
+    JOptionPane.showMessageDialog(null, "Key is unlocked for this level! ");
+  }
+  else {
+    key1 = false;
+    JOptionPane.showMessageDialog(null, "Key is not unlocked" );
+  }
+  return key1;
 }
 }
