@@ -29,13 +29,16 @@ public boolean startGame(){
     if(newgameKitchen.equalsIgnoreCase("no"))
     {
         gameOnKitchen = false;
-        System.out.println("See you later!");
+        String kitchen_exit = "See you later! ";
+          JOptionPane.showMessageDialog(null, kitchen_exit);
+
 
 
     }
     else if(newgameKitchen.equalsIgnoreCase("yes"))
     {
-         System.out.println("Welcome!You have entered the Kitchen.You cannot explore the Kitchen yet.... ");
+      String kitchen_welcome = "Welcome!You have entered the Kitchen.You cannot explore the Kitchen yet.... ";
+        JOptionPane.showMessageDialog(null, kitchen_welcome);
          gameOnKitchen = true;
 
     }
@@ -47,19 +50,21 @@ public boolean startGame(){
     public void difficultyKitchen(int input)
     {
       //takes input for level of difficulty. changes time left on the timer.
-      Scanner keyboard = new Scanner(System.in);
       boolean gameOnKitchen = true;
       int count = input;
       if(gameOnKitchen)
       {
-        System.out.print("Difficulty? (easy, medium, hard) ");
-        String difficultyKitchenInput = keyboard.next();
+        Object[] possibleValues = {"easy", "medium", "hard"};
+
+      String difficultyKitchenInput = (String)JOptionPane.showInputDialog(null,
+                      "Choose the level of difficulty: ", "Input",
+                      JOptionPane.INFORMATION_MESSAGE, null,
+                      possibleValues, possibleValues[0]);
         boolean difficultyneededKitchen = false;
-        System.out.println(difficultyKitchenInput);
+
 
 //If difficulty is easy timer is not changed.
           if (difficultyKitchenInput.equals("easy")) {
-            System.out.print("Difficulty set to easy");
             //implement timer to 10 min
             count = count-0;
             difficultyneededKitchen = true;
@@ -96,11 +101,7 @@ public boolean startGame(){
           }
           //Invalid inputs are handled by prompting an input until the user inputs a
           //valid input.
-          else {
-            System.out.println("That is not a vaild difficulty");
-            System.out.print("Difficulty? (easy, medium, hard) ");
-            difficultyKitchenInput = keyboard.next();
-          }
+
       }
     }
 
@@ -112,75 +113,76 @@ public boolean startGame(){
 //The cabinet has the key2.
 public boolean KitchenExplore()
 {
-  Scanner keyboard = new Scanner(System.in);
   boolean paper = true;
   while(paper){
-  System.out.println("There is a table across the room. You see a cabinet and hope to find something useful");
-  System.out.println("");
-  System.out.println("Choose an option: ");
-  System.out.println("(1) Move towards the Table.");
-  System.out.println("(2) Try to open the Cabinet.");
-  System.out.println("Enter your move: ");
-  String first_input = keyboard.next();
-  System.out.println("-----------------------------------");
+
+  Object[] possibleValues = {"(1) Move towards the Table.", "(2) Try to open the Cabinet."};
+
+String first_input = (String)JOptionPane.showInputDialog(null,
+                "There is a table across the room. You see a cabinet and hope to find something useful ", "Input",
+                JOptionPane.INFORMATION_MESSAGE, null,
+                possibleValues, possibleValues[0]);
 
   String cabinet_input = "1";
 
 
-  while(first_input.equals("1")|| cabinet_input.equals("2"))
+  while(first_input.equals("(1) Move towards the Table.")|| cabinet_input.equals("(2) Try to open the Cabinet."))
   {
-    System.out.print("You are walking towards the table. You notice a crumpled piece of paper and a knife ");
-    System.out.println("Choose an option: ");
-    System.out.println("(1) Pick up the knife.");
-    System.out.println("(2) Pick up the piece of paper");
-    System.out.println("Enter your move: ");
-    String table_input = keyboard.next();
-    System.out.println("-----------------------------------");
 
-    if(table_input.equals("1")){
-      System.out.print("The knife is now in your inventory.");
-      System.out.println("The knife cannot be used in this room");
+    Object[] possibleValues2 = {"(1) Pick up the knife.", "(2) Pick up the piece of paper"};
+
+  String table_input = (String)JOptionPane.showInputDialog(null,
+                  "You are walking towards the table. You notice a crumpled piece of paper and a knife. Choose your move: ", "Input",
+                  JOptionPane.INFORMATION_MESSAGE, null,
+                  possibleValues2, possibleValues2[0]);
+
+
+    if(table_input.equals("(1) Pick up the knife.")){
+      String knife_message = "The key is in the inventory. It cannot be used in this room." ;
+          JOptionPane.showMessageDialog(null , knife_message);
 
     }
-    else if(table_input.equals("2")){
-      System.out.print("The paper is now in your inventory.");
-      System.out.println("The message on the paper says (1)triangle, (2)square, (3)Pentagon");
+    else if(table_input.equals("(2) Pick up the piece of paper")){
+      String paper_message = "There are three shapes drawn on the paper: a triangle, a square and a pentagon." ;
+          JOptionPane.showMessageDialog(null , paper_message);
       paper = true;
       first_input = "3";
 
     }
 }
-  if(first_input.equals("2"))
+  if(first_input.equals("(2) Try to open the Cabinet."))
   {
-    System.out.print("The cabinet is locked...it needs a code!");
-    System.out.println("Choose an option: ");
-    System.out.println("(1) try to unlock the door.");
-    System.out.println("(2) Go to the table.");
-    System.out.println("Enter your move: ");
-    cabinet_input = keyboard.next();
-    System.out.println("-----------------------------------");
+
+    Object[] possibleValues3 = {"(1) try to unlock the door.", "(2) Go to the table."};
+
+   cabinet_input = (String)JOptionPane.showInputDialog(null,
+                  "The cabinet is locked...it needs a code! Choose your move: ", "Input",
+                  JOptionPane.INFORMATION_MESSAGE, null,
+                  possibleValues3, possibleValues3[0]);
 
 
 
-    if(cabinet_input.equals("1"))
+
+    if(cabinet_input.equals("(1) try to unlock the door."))
     {
-      System.out.print("Enter a digit code: ");
-      String code = keyboard.next();
-      System.out.println("-----------------------------------");
+      String code =
+          JOptionPane.showInputDialog(" Enter your guess for the code:  ");
 
 
 
       if(code.equals("345"))
       {
-        System.out.println("The door is unlocked");
-        System.out.println("Key obtained");
+        String key_message = "The door is unlocked and the key is obtained!" ;
+            JOptionPane.showMessageDialog(null , key_message);
+
         key2 = true;
         break;
       }
 
       else
       {
-        System.out.println("Cabinet door remains unlocked");
+        String key_message_fail = "The door remains locked." ;
+            JOptionPane.showMessageDialog(null , key_message_fail);
       }
 
     }
