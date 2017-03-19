@@ -6,7 +6,7 @@ public class Key1text
   //initialize keyboard and public variables gameOn (controls if level runs) and lives (differ depending on difficulty)
   Scanner keyboard = new Scanner(System.in);
   public boolean gameOn;
-  public int lives;
+  public int lives=5;
   public boolean key1;
 //---------------------------------------------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ public boolean puzzle1method(){
   //riddle 1
   while ((!riddle1boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
+    //System.out.println("Lives: " + lives);
     System.out.println("Riddle 1");
     System.out.print("What is a 7 letter word containing thousands of letters? ");
     //String riddle1raw = JOptionPane.showInputDialog("Riddle 1: What is a 7 letter word containing thousands of letters?  ");
@@ -80,6 +80,7 @@ public boolean puzzle1method(){
     {
       //answer is incorrect and player has remaining lives
       System.out.println("Incorrect. ");
+      /*
       lives = lives - 1;
       if (lives < 1)
       {
@@ -87,6 +88,7 @@ public boolean puzzle1method(){
         System.out.println("You have no more lives!");
         gameOn = false;
       }
+      */
     }
   }
 
@@ -94,7 +96,7 @@ public boolean puzzle1method(){
   //riddle 2
   while ((!riddle2boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
+    //System.out.println("Lives: " + lives);
     System.out.println("Riddle 2");
     System.out.println("Riddle 2: What is it that after you take away the whole, some still remains? ");
     String riddle2raw = keyboard.next();
@@ -109,6 +111,7 @@ public boolean puzzle1method(){
     {
       //answer is incorrect and player has remaining lives
       System.out.println("Incorrect. ");
+      /*
       lives = lives - 1;
       if (lives < 1)
       {
@@ -116,6 +119,7 @@ public boolean puzzle1method(){
         System.out.println("You have no more lives!");
         gameOn = false;
       }
+      */
     }
   }
 
@@ -123,7 +127,7 @@ public boolean puzzle1method(){
   //riddle 3
   while ((!riddle3boolean) && lives > 0)
   {
-    System.out.println("Lives: " + lives);
+    //System.out.println("Lives: " + lives);
     System.out.println("Riddle 3");
     System.out.println("Riddle 3: Name an eight letter word that has kst in the middle, in the beginning, and at the end. ");
     String riddle3raw = keyboard.next();
@@ -138,6 +142,7 @@ public boolean puzzle1method(){
     {
       //answer is incorrect and player has remaining lives
       System.out.println("Incorrect. ");
+      /*
       lives = lives - 1;
       if (lives < 1)
       {
@@ -145,6 +150,7 @@ public boolean puzzle1method(){
         System.out.println("You have no more lives!");
         gameOn = false;
       }
+      */
     }
   }
   boolean riddleboolean = true;
@@ -163,7 +169,7 @@ boolean unscramble1boolean = false;
 //unscramble 1
 while ((!unscramble1boolean) && lives > 0)
 {
-  System.out.println("Lives: " + lives);
+  //System.out.println("Lives: " + lives);
   System.out.println("Word Unscramble 1");
   System.out.println("Unscramble these letters into a word: N D U E D R E F ");
   String unscramble1raw = keyboard.next();
@@ -178,6 +184,7 @@ while ((!unscramble1boolean) && lives > 0)
   {
     //answer is incorrect and player has remaining lives
     System.out.println("Incorrect. ");
+    /*
     lives = lives - 1;
     if (lives < 1)
     {
@@ -185,6 +192,7 @@ while ((!unscramble1boolean) && lives > 0)
       System.out.println("You have no more lives!");
       gameOn = false;
     }
+    */
   }
 }
 
@@ -192,7 +200,7 @@ boolean unscramble2boolean = false;
 
 while ((!unscramble2boolean) && lives > 0)
 {
-  System.out.println("Lives: " + lives);
+  //System.out.println("Lives: " + lives);
   System.out.println("Word Unscramble 2");
   System.out.println("Unscramble these letters into a word: V R A E S N T O B ");
 String unscramble2raw = keyboard.next();
@@ -207,6 +215,7 @@ String unscramble2raw = keyboard.next();
   {
     //answer is incorrect and player has remaining lives
     System.out.println("Incorrect. ");
+    /*
     lives = lives - 1;
     if (lives < 1)
     {
@@ -214,6 +223,7 @@ String unscramble2raw = keyboard.next();
       System.out.println("You have no more lives!");
       gameOn = false;
     }
+    */
   }
 }
 
@@ -221,7 +231,7 @@ boolean unscramble3boolean = false;
 
 while ((!unscramble3boolean) && lives > 0)
 {
-  System.out.println("Lives: " + lives);
+  //System.out.println("Lives: " + lives);
   System.out.println("Word Unscramble 3");
   System.out.println("Unscramble these letters into a word: S F N L O I G M A ");
   String unscramble3raw = keyboard.next();
@@ -236,6 +246,7 @@ while ((!unscramble3boolean) && lives > 0)
   {
     //answer is incorrect and player has remaining lives
     System.out.println("Incorrect. ");
+    /*
     lives = lives - 1;
     if (lives < 1)
     {
@@ -243,6 +254,7 @@ while ((!unscramble3boolean) && lives > 0)
       System.out.println("You have no more lives!");
       gameOn = false;
     }
+    */
   }
 }
 boolean unscrambleboolean = true;
@@ -284,6 +296,7 @@ public boolean puzzle3method() {
     {
       //answer is incorrect and player has remaining lives
       System.out.println("Incorrect. ");
+      /*
       lives = lives - 1;
       if (lives < 1)
       {
@@ -291,6 +304,7 @@ public boolean puzzle3method() {
         System.out.println("You have no more lives!");
         gameOn = false;
       }
+      */
     }
   }
 
@@ -320,6 +334,7 @@ public boolean puzzle3method() {
     {
       //answer is incorrect and player has remaining lives
       System.out.println("Incorrect. ");
+      /*
       lives = lives - 1;
       if (lives < 1)
       {
@@ -327,6 +342,7 @@ public boolean puzzle3method() {
         System.out.println("You have no more lives!");
         gameOn = false;
       }
+      */
     }
   }
   boolean combinationboolean = true;
@@ -381,6 +397,7 @@ public boolean puzzle4method() {
     {
       //answer is incorrect and player has remaining lives
       System.out.println("Incorrect. ");
+      /*
       lives = lives - 1;
       if (lives < 1)
       {
@@ -388,6 +405,7 @@ public boolean puzzle4method() {
         System.out.println("You have no more lives!");
         gameOn = false;
       }
+      */
     }
   }
   return einsteinboolean;
