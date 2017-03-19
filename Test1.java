@@ -4,7 +4,7 @@ public class Test1 {
     Key1text p1 = new Key1text();
     boolean rboolean, uboolean, eboolean, cboolean, key1;
     p1.startgamemethod();
-    p1.difficultymethod();
+    //p1.difficultymethod();
     rboolean = p1.puzzle1method();
     uboolean = p1.puzzle2method();
     cboolean = p1.puzzle3method();
