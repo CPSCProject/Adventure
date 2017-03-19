@@ -61,7 +61,7 @@ public void opening()
 
     JPanel p5 = new JPanel(); //This is the text-entry box.
     p5.setBounds(10, 10, 650, 350);
-    
+
 
     // TextArea Setup
     statusT = new JTextArea();
@@ -74,6 +74,7 @@ public void opening()
     JButton commandB3 = new JButton("3:Drink");
     JButton commandB4 = new JButton("4:Leave");
     JButton commandB5 = new JButton("5:(Debug)Clear the text");
+
 
     //Graphic setup
     //graphic = new JButton(new ImageIcon("dungeonSample.jpg"));
@@ -90,7 +91,7 @@ public void opening()
     storyT.setFont(basicfont);
     storyT.setBackground(Color.black);
     storyT.setForeground(Color.white);
-    storyT.setText("\nThere is a table across the room. \nYou see a cabinet and hope to find something useful\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
+    storyT.setText("\nYou have entered the library \nDo you want to continue?\n (1) Yes. \n (2) No.");
 
     //Input box setup
     input.setFont(basicfont);
@@ -128,18 +129,36 @@ public void actionPerformed(ActionEvent e)
     input.selectAll();
 
     if(choice.equals("1")){
-        storyT.setText("You are walking towards the table. \nYou notice a crumpled piece of paper and a knife.\n Choose your move: \n(1) Pick up the knife.\n(2) Pick up the piece of paper");
+        storyT.setText("\nRiddle 1: \nWhat is a 7 letter word containing thousands of letters? ");
         input.selectAll();
-        if(choice.equals("2")){
-          storyT.setText("There are three shapes drawn on the paper: a triangle, \na square and a pentagon.");
-          storyT.setText("There is a table across the room. \nYou see a cabinet and hope to find something useful\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
+        if(choice.equals("mailbox")){
+          storyT.setText("Correct! \n Next riddle: \nWhat is it that after you take away the whole, some still remains? ");
+          input.selectAll();
+          if(choice.equals("wholesome")){
+            storyT.setText("Correct! \n Next riddle: \nName an eight letter word that has kst in the middle, in the beginning, and at the end. ");
+            input.selectAll();
+            if (choice.equals("inkstand")){
+              storyT.setText("Correct! ");
+            }
+            else {
+              storyT.setText("Incorrect. ");
+            }
+          }
+          else{
+            storyT.setText("Incorrect. ");
+          }
+          //storyT.setText("There is a table across the room. \nYou see a cabinet and hope to find something useful\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
+        }
+        else {
+          storyT.setText("Incorrect. ");
         }
     }
     if(choice.equals("2"))
     {
-        storyT.setText("What, you think you can rob me?!\n\nThe inkeeper attacked!\n6870 points of damage!\nYou are dead.");
+        storyT.setText("Goodbye!");
     }
-    if(choice.equals("3"))
+
+    if(choice.equals(""))
     {
         storyT.setText("Sorry, we can't serve booze anymore because of the restriction by the lord");
     }
@@ -151,6 +170,7 @@ public void actionPerformed(ActionEvent e)
     {
         storyT.setText("");
     }
+  
 
 }
 
