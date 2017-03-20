@@ -1,6 +1,14 @@
 import java.util.Scanner;
 import java.util.Random;
-
+/**
+*The Key1text program runs a level of a text based adventure game with 4
+*puzzle methods, a lives method and a start menu method.
+*this class represents a player of the game
+*the body nitializes keyboard and public variables gameOn (controls if level runs)
+*and lives (differ depending on difficulty)
+*There are no privacy leaks in this code because the entire instance of a class
+*is never returned to another class, only individual instance variables are returned.
+*/
 public class Key1text
 {
   //initialize keyboard and public variables gameOn (controls if level runs) and lives (differ depending on difficulty)
@@ -10,8 +18,10 @@ public class Key1text
   public boolean key1;
 //---------------------------------------------------------------------------------------------------------
 
-  //determine if play will start the level
-  //returns: boolean
+/**
+*This startgamemethod determines if player will start the level
+*returns: boolean depending on answer recieved
+*/
   public boolean startgamemethod() {
     System.out.println("Behind this door are 4 puzzles you must complete to obtain a key.");
     System.out.println("You have entered the library. Start this level?");
@@ -31,8 +41,11 @@ public class Key1text
 }
 //---------------------------------------------------------------------------------------------------------
 
-  //determine difficulty (changes number of lives from 5 (easy) to 3 (hard))
-  //returns: number of lives
+/**
+*This difficultymethod determines difficulty
+*(changes number of lives from 5 (easy) to 3 (hard))
+*returns: number of lives as an int depending on difficulty
+*/
   public int difficultymethod() {
     System.out.println("Difficulty?");
     String difficultyraw = keyboard.next();
@@ -53,11 +66,13 @@ public class Key1text
   }
 //---------------------------------------------------------------------------------------------------------
 
-// 3 riddles that will display one after another if the previous answer is right
-//if the asnwer is wrong, the lives will go down
-//if there are 0 lives, the riddles will not be displayed and the method will finish
-//contains 3 booleans that determine if the 3 riddles are correct
-//returns: riddleboolean
+/**
+*3 riddles that will display one after another if the previous answer is right
+*if the answer is wrong, the lives will go down
+*if there are 0 lives, the riddles will not be displayed and the method will finish
+*contains 3 booleans that determine if the 3 riddles are correct
+*returns: riddleboolean depending on if answers are right
+*/
 public boolean puzzle1method(){
 
   boolean riddle1boolean = false;
@@ -158,11 +173,13 @@ public boolean puzzle1method(){
 }
 //---------------------------------------------------------------------------------------------------------
 
-// 3 word unscrambles that will display one after another if the previous answer is right
-//if the asnwer is wrong, the lives will go down
-//if there are 0 lives, the unscrambles will not be displayed and the method will finish
-//contains 3 booleans that determine if the 3 unscrambles are correct
-//returns: unscrambleboolean
+/**
+*3 word unscrambles that will display one after another if the previous answer is right
+*if the answer is wrong, the lives will go down
+*if there are 0 lives, the unscrambles will not be displayed and the method will finish
+*contains 3 booleans that determine if the 3 unscrambles are correct
+*returns: unscrambleboolean depending on if all answers are right
+*/
 public boolean puzzle2method() {
 
 boolean unscramble1boolean = false;
@@ -262,12 +279,14 @@ return unscrambleboolean;
 }
 //---------------------------------------------------------------------------------------------------------
 
-// 2 combination locks that will display one after another if the previous answer is right
-//the numbers for the combinations are randomly generated as numbers between 0 and 30
-//if the asnwer is wrong, the lives will go down
-//if there are 0 lives, the combinations will not be displayed and the method will finish
-//contains 2 booleans that determine if the 2 combinations are correct
-//returns: combinationboolean
+/**
+*2 combination locks that will display one after another if the previous answer is right
+*the numbers for the combinations are randomly generated as numbers between 0 and 30
+*if the answer is wrong, the lives will go down
+*if there are 0 lives, the combinations will not be displayed and the method will finish
+*contains 2 booleans that determine if the 2 combinations are correct
+*returns: combinationboolean depending on if combos are right
+*/
 public boolean puzzle3method() {
 
   //set 3 random numbers between 0 and 30
@@ -350,11 +369,13 @@ public boolean puzzle3method() {
 }
 //---------------------------------------------------------------------------------------------------------
 
-// One last word puzzle
-//if the asnwer is wrong, the lives will go down
-//if there are 0 lives, the puzzle will not be displayed and the method will finish
-//contains 1 booleas that determines if the puzzle is correct
-//returns:  einsteinboolean
+/**
+*last word puzzle method
+*if the answer is wrong, the lives will go down
+*if there are 0 lives, the puzzle will not be displayed and the method will finish
+*contains 1 boolean that determines if the puzzle is correct
+*returns:  einsteinboolean depending on if answer is right
+*/
 public boolean puzzle4method() {
 
   boolean einsteinboolean = false;
@@ -410,7 +431,12 @@ public boolean puzzle4method() {
   }
   return einsteinboolean;
 }
-
+/**
+*key1control method checks if all the other booleans in this class are true or false
+*if they are all true, the key is unlocked for this level and the user goes to the
+*next level
+*returns key1 boolean depending on results from other methods
+*/
 public boolean key1control(boolean einsteinboolean, boolean comboboolean, boolean unscrambleboolean, boolean riddleboolean) {
   if (einsteinboolean && unscrambleboolean && riddleboolean && comboboolean) {
     key1 = true;
