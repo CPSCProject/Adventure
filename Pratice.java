@@ -20,12 +20,8 @@ public class Pratice extends JFrame implements ActionListener
 	JTextArea statusT;
 	JTextArea storyT;
 	JTextField input;
-	public JButton commandB1;
-	public JButton commandB2;
-	public JButton commandB3;
-	public JButton commandB4;
-	public JButton commandB5;
-	public JButton Image1, Image2, Image3, Image4;
+	private JButton commandB1, commandB2, commandB3, commandB4, commandB5;
+	private JButton Image1, Image2, Image3, Image4;
 	Timer timer;
 	String applePath = "apple.jpg";
 	String planePath = "plane.jpg";
@@ -108,7 +104,7 @@ public class Pratice extends JFrame implements ActionListener
 		storyT.setFont(basicfont);
 		storyT.setBackground(Color.black);
 		storyT.setForeground(Color.white);
-		storyT.setText("           		 This is a Portion room. \n   In a given time, a player has to idnetify the same cards to  \n    finish the game. \n A player can either use the mouse or a keybored to complete the  \n  game.\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
+		storyT.setText("           		 This is a Portion room. \n   In a given time, a player has to idnetify the same cards to  \n finish the game. \n A player must use the mouse to complete the game.\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
 
 		//Input box setup
 		input.setFont(basicfont);
@@ -188,6 +184,8 @@ public class Pratice extends JFrame implements ActionListener
 
 		window.setVisible(true);
 	}
+	
+	
 
 	public void actionPerformed(ActionEvent e)
 	{
@@ -220,8 +218,27 @@ public class Pratice extends JFrame implements ActionListener
 			storyT.setText("");
 		}
 
+	}
 
 
+	public JButton getButton() {
+		return this.commandB1;
+	}
+
+	public JButton getImage() {
+		return this.Image1;
+	}
+	
+	public JButton getImage2() {
+		return this.Image2;
+	}
+	
+	public JButton getImage3() {
+		return this.Image3;
+	}
+	
+	public JButton getImage4() {
+		return this.Image4;
 	}
 
 
@@ -233,6 +250,10 @@ public class Pratice extends JFrame implements ActionListener
 
 class ButtonListener implements ActionListener {
 	ButtonListener() {
+		
+		  Pratice frame = new Pratice();
+		  JButton theWidth = frame.getImage();
+		  JButton commandB1 = frame.getButton();
 	}
 
 
@@ -241,17 +262,14 @@ class ButtonListener implements ActionListener {
 
 	private void setAction()
 	{
-		commandB1.addActionListener(this);
-		commandB1.setActionCommand("help");
-		commandB2.addActionListener(this);
-		commandB2.setActionCommand("commandB2");
-		commandB3.addActionListener(this);
-		commandB3.setActionCommand("commandB3"); 
+		//commandB1.addActionListener(this);
+		//commandB1.setActionCommand("help");
+
 	}
 
 	public void actionPerformed(ActionEvent eve)
 	{
-		if(eve.getActionCommand() == "help")
+		if(eve.getActionCommand() == "1:Help")
 			JOptionPane.showMessageDialog(null, "JButton01 Pressed");
 		else if(eve.getActionCommand() == "jb2")
 			JOptionPane.showMessageDialog(null, "JButton02 Pressed");
