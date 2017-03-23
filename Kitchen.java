@@ -2,19 +2,23 @@
 // Room Kitchen
 // goal: obtain key2
 
-
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Kitchen{
   private boolean key2;
   private boolean gameOnKitchen;
 
-
-//The startGame is called by the MainDriver. Takes user input for starting the game.
+//------------------------------------------------------------------------------------------------------------------
+/*Method: startGame()
+  Parameters: none
+  Return values: Boolean game1
+  Goal: the goal is to determine if the user wants to proceed to the kitchen.
+*/
 public boolean startGame(){
   Scanner keyboard = new Scanner(System.in);
     int new_count;
@@ -47,109 +51,93 @@ public boolean startGame(){
 
 //------------------------------------------------------------------------------
 
-    public void difficultyKitchen(int input)
-    {
-      //takes input for level of difficulty. changes time left on the timer.
-      boolean gameOnKitchen = true;
-      int count = input;
-      if(gameOnKitchen)
-      {
-        Object[] possibleValues = {"easy", "medium", "hard"};
-
-      String difficultyKitchenInput = (String)JOptionPane.showInputDialog(null,
-                      "Choose the level of difficulty: ", "Input",
-                      JOptionPane.INFORMATION_MESSAGE, null,
-                      possibleValues, possibleValues[0]);
-        boolean difficultyneededKitchen = false;
-
-
-//If difficulty is easy timer is not changed.
-          if (difficultyKitchenInput.equals("easy")) {
-            //implement timer to 10 min
-            count = count-0;
-            difficultyneededKitchen = true;
-            TimerR gui = new TimerR(count);
-            gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            gui.setSize(251,100);
-            gui.setTitle("Timer Program");
-            gui.setVisible(true);
-
-
-
-          }
-//If difficulty is easy time goes down by 30sec.
-            else if (difficultyKitchenInput.equals("medium")) {
-            count = count - 30;
-            difficultyneededKitchen = true;
-            TimerR gui = new TimerR(count);
-            gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            gui.setSize(251,100);
-            gui.setTitle("Timer Program");
-            gui.setVisible(true);
-          }
-//If difficulty is easy time goes down by 60sec.
-
-          else if (difficultyKitchenInput.equals("hard")) {
-            //implement hard (3 lives)
-            count = count - 60;
-            difficultyneededKitchen = true;
-            TimerR gui = new TimerR(count);
-            gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            gui.setSize(251,100);
-            gui.setTitle("Timer Program");
-            gui.setVisible(true);
-          }
-          //Invalid inputs are handled by prompting an input until the user inputs a
-          //valid input.
-
-      }
-    }
-
 //------------------------------------------------------------------------------
 //KitchenExplore runs the escape room game.User is providedd with choices throughout
 // The cabinet is locked and is unlocked by a code.
 //The code can be found on the piece of paper on the table.
 //The knife on the table is added to inventory when chosen.
 //The cabinet has the key2.
-public boolean KitchenExplore()
+public String KitchenExploreTable(String input)
 {
-  boolean paper = true;
-  while(paper){
-
-  Object[] possibleValues = {"(1) Move towards the Table.", "(2) Try to open the Cabinet."};
-
-String first_input = (String)JOptionPane.showInputDialog(null,
-                "There is a table across the room. You see a cabinet and hope to find something useful ", "Input",
-                JOptionPane.INFORMATION_MESSAGE, null,
-                possibleValues, possibleValues[0]);
-
-  String cabinet_input = "1";
-
-
-  while(first_input.equals("(1) Move towards the Table.")|| cabinet_input.equals("(2) Try to open the Cabinet."))
-  {
-
-    Object[] possibleValues2 = {"(1) Pick up the knife.", "(2) Pick up the piece of paper"};
-
-  String table_input = (String)JOptionPane.showInputDialog(null,
-                  "You are walking towards the table. You notice a crumpled piece of paper and a knife. Choose your move: ", "Input",
-                  JOptionPane.INFORMATION_MESSAGE, null,
-                  possibleValues2, possibleValues2[0]);
-
-
-    if(table_input.equals("(1) Pick up the knife.")){
-      String knife_message = "The key is in the inventory. It cannot be used in this room." ;
-          JOptionPane.showMessageDialog(null , knife_message);
-
+    String table_return_1 = "Error ";
+    String table_input = input;
+    if (table_input.equals("1"))
+    {
+      table_return_1 = "You are walking towards the table.\n You notice a crumpled piece of paper and a knife.\n Choose your move:\n(k) Pick up the knife. \n (p) Pick up the piece of paper.";
     }
-    else if(table_input.equals("(2) Pick up the piece of paper")){
-      String paper_message = "There are three shapes drawn on the paper: a triangle, a square and a pentagon." ;
-          JOptionPane.showMessageDialog(null , paper_message);
-      paper = true;
-      first_input = "3";
+    else if(table_input.equals("2"))
+      {
+      table_return_1 = "You walk towards the Cabinet. \nThe cabinet is locked...it needs a code! Choose your move:\n(e) try to unlock the door.\n(l) look at the paper in the inventory ";
+      }
+      String table_show = table_return_1;
+    return table_show;
 
-    }
-}
+  }
+    public String KitchenExplorePaper(String input2)
+    {
+        String Paper_return_1 = "Error";
+        String Paper_input = input2;
+        if (Paper_input.equals("k"))
+        {
+          Paper_return_1 = "The 'something' is in the inventory. \nIt cannot be used in this room.\ninput '1' to return to main menu";
+          System.out.print("KitchenExplorepaper");
+        }
+        else if(Paper_input.equals("p"))
+          {
+          boolean paper =true;
+          Paper_return_1 = "There are three shapes drawn on the paper: \na triangle, a square and a pentagon.\n use this to open the cabinet.\n (1) Move towards the Table.\n (2) Try to open the Cabinet.";
+          }
+          String Paper_show = Paper_return_1;
+        return Paper_show;
+      }
+
+      public String KitchenExploreCabinet(String input3)
+      {
+          String cabinet_return_1 = "";
+          String cabinet_input = input3;
+          if (cabinet_input.equals("e"))
+          {
+            cabinet_return_1 = "Enter the code: \n(345)\n(123) \n(456) \n(987)";
+            System.out.print("KitchenExplorecabinet");
+          }
+          else if(cabinet_input.equals("l"))
+            {
+              boolean paper = true;
+              if(paper){
+            cabinet_return_1 = "There are three shapes drawn on the paper: \na triangle, a square and a pentagon.\n use this to open the cabinet.";
+          }
+          else{
+            cabinet_return_1 = "The paper is not in the inventory.\n (1)go to the table to pick it up.";
+          }
+            }
+
+
+          String cabinet_show = cabinet_return_1;
+          return cabinet_show;
+        }
+
+
+      public String KitchenExploreCode(String input4)
+      {
+          String code_return_1 = "";
+          String code_input = input4;
+          if (code_input.equals("345"))
+          {
+            code_return_1 = "The door is unlocked.\n you have obtained the key.";
+            System.out.print("KitchenExplorecode");
+          }
+          else
+          {
+            code_return_1 = "The door remains locked.\n (e)Enter the code: \n (345)\n(123) \n(456) \n(987). \n(p) peek at the paper.";
+          }
+
+          String code_show = code_return_1;
+          return code_show;
+        }
+
+
+
+/*
   if(first_input.equals("(2) Try to open the Cabinet."))
   {
 
@@ -191,7 +179,5 @@ String first_input = (String)JOptionPane.showInputDialog(null,
   }
 
   }
-  return(key2);
-}
-
+  return(key2);*/
 }
