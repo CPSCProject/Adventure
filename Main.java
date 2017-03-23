@@ -1,3 +1,5 @@
+
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -29,22 +31,23 @@ public static void main(String[]args)
 
 }
 
+
+
 public void opening()
 {
 
-
     JFrame window = new JFrame();
-    window.setBounds(200,200,1024,768);
+    window.setBounds(200,50,1024,768);
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setBackground(Color.black);
     window.setLayout(null); //Disabling the default layout.
 
     Font basicfont = new Font("MS Gothic", Font.PLAIN, 20);
-
     // Panel Setup
     JPanel p1 = new JPanel(); //This is where graphics are displayed.
     p1.setBounds(670, 680, 325, 50); //Panel layout(x,y,x,y)
     p1.setBackground(Color.black);
+
 
     JPanel p2 = new JPanel(); //This is where status is displayed.
     p2.setBounds(670, 10, 325, 350);
@@ -60,7 +63,11 @@ public void opening()
     p4.setLayout(new GridLayout(5,1)); //Setting the layout of Panel 4
 
     JPanel p5 = new JPanel(); //This is the text-entry box.
-    p5.setBounds(10, 10, 650, 350);
+    p5.setBounds(60, 60, 650, 350);
+
+
+
+
 
 
     // TextArea Setup
@@ -74,7 +81,6 @@ public void opening()
     JButton commandB3 = new JButton("3:Drink");
     JButton commandB4 = new JButton("4:Leave");
     JButton commandB5 = new JButton("5:(Debug)Clear the text");
-
 
     //Graphic setup
     //graphic = new JButton(new ImageIcon("dungeonSample.jpg"));
@@ -91,7 +97,7 @@ public void opening()
     storyT.setFont(basicfont);
     storyT.setBackground(Color.black);
     storyT.setForeground(Color.white);
-    storyT.setText("\nYou have entered the library \nDo you want to continue?\n (1) Yes. \n (2) No.");
+    storyT.setText("Adventure Game: input 'start' to start game");
 
     //Input box setup
     input.setFont(basicfont);
@@ -119,60 +125,68 @@ public void opening()
     window.add(p4);
     window.add(p5);
 
+    TimerR panel = new TimerR();
+    panel.setBounds(20,20,250,250);
+    window.add(panel);//Add the timer to the JFrame
+    window.setLocationByPlatform( true );
     window.setVisible(true);
+    storyT.setText("There is a table across the room. \nYou see a cabinet and hope to find something useful\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
+
+
 }
+
+
+
+
 
 public void actionPerformed(ActionEvent e)
 {
+//--------------------------KITCHEN--------------------------------------------------
 
-    String choice = input.getText();
-    input.selectAll();
-
-    if(choice.equals("1")){
-        storyT.setText("\nRiddle 1: \nWhat is a 7 letter word containing thousands of letters? ");
-        input.selectAll();
-        if(choice.equals("mailbox")){
-          storyT.setText("Correct! \n Next riddle: \nWhat is it that after you take away the whole, some still remains? ");
+        String choice = input.getText();
+        if(choice.equals("1") || choice.equals("2")){
+          Kitchen key2 = new Kitchen();
+          String table_menu = key2.KitchenExploreTable(choice);
+          storyT.setText(table_menu);
+          System.out.println("choice is:" + choice);
+          //input.setText(null);
           input.selectAll();
-          if(choice.equals("wholesome")){
-            storyT.setText("Correct! \n Next riddle: \nName an eight letter word that has kst in the middle, in the beginning, and at the end. ");
-            input.selectAll();
-            if (choice.equals("inkstand")){
-              storyT.setText("Correct! ");
-            }
-            else {
-              storyT.setText("Incorrect. ");
-            }
-          }
-          else{
-            storyT.setText("Incorrect. ");
-          }
-          //storyT.setText("There is a table across the room. \nYou see a cabinet and hope to find something useful\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
+          //Boolean table = false;
         }
-        else {
-          storyT.setText("Incorrect. ");
+
+          String choice2 = choice;
+          Kitchen key2_paper = new Kitchen();
+          if(choice2.equals("k")|| choice2.equals("p")){
+          String paper_menu = key2_paper.KitchenExplorePaper(choice2);
+          storyT.setText(paper_menu);
+          System.out.println("choice2 is:" + choice2);
+          //input.setText(null);
+          input.selectAll();
         }
-    }
-    if(choice.equals("2"))
-    {
-        storyT.setText("Goodbye!");
+
+        String choice3 = choice2;
+        Kitchen key2_cabinet = new Kitchen();
+        if(choice3.equals("e")|| choice3.equals("l")){
+        String cabinet_menu = key2_cabinet.KitchenExploreCabinet(choice3);
+        storyT.setText(cabinet_menu);
+        System.out.println("choice3 is:" + choice3);
+        //input.setText(null);
+        input.selectAll();
+      }
+
+      String choice4 = choice3;
+      Kitchen key2_code = new Kitchen();
+      if(choice4.equals("345")|| choice4.equals("987")){
+      String code_menu = key2_code.KitchenExploreCode(choice4);
+      storyT.setText(code_menu);
+      System.out.println("choice4 is:" + choice3);
+      //input.setText(null);
+      input.selectAll();
     }
 
-    if(choice.equals(""))
-    {
-        storyT.setText("Sorry, we can't serve booze anymore because of the restriction by the lord");
-    }
-    if(choice.equals("4"))
-    {
-        storyT.setText("See ya.");
-    }
-    if(choice.equals("5"))
-    {
-        storyT.setText("");
-    }
-  
 
 }
+
 
 
 }
