@@ -1,70 +1,59 @@
-//This is version 2 of the boiler room class.
+// This is the logic for the boiler room so user can obtain "key 5"
+
 import javax.swing.JOptionPane;
-//import java.util.ArrayList;
-
-
+import java.util.Scanner;
 
 public class Boilerlogic
 {
-  //public ArrayList<String> key_count = new ArrayList<String>();
-  public boolean key5 = false;
-  public boolean door = false;
+  public static boolean key5 = false;
+  private String door;
   public boolean gameStart = false;
-  private String dial = "No colour";
+  private static String dial = "No colour";
   public static final int COUNT = 60;
   private int count;
-//------------------------------------------------------------------------------
-public Boilerlogic()
-  {
-    this(COUNT);
-  }
+  private String mainuserchoice;
 
-public Boilerlogic(int userCount)
-  {
-    count = userCount;
-  }
 //------------------------------------------------------------------------------
   /*
   String messages for boiler room level.
   */
 //------------------------------------------------------------------------------
-    String str_roominfo = "You have entered the boiler room. The door your have entered from has locked itself. To exit the room, you must unlock the door you came from.";
-    String str_switchTable_descrip = "The room is dark, and you cannot see anything but a table in the corner of the room.";
-    String lights_on = "You have turned on the lights which are now permanently on and you can see a table in the corner of the room";
-    String door_locked = "You push with all your might, and the door remains stubbornly locked";
-    String door_unlocked = "HAZZA THE DOOR IS UNLOCKED! YOU HAVE COMPLETED THE LEVEL";
-    String switchTable_set = "You have lit the candle, and you see the key and pick it up. What shall you do with it???";
-    String curr_d_colour = "Current Dial colour: " + this.dial;
-    String new_d_colour = "Dial colour now set to: " + this.dial;
-
+    String str_roominfo = "You have entered the boiler room. \nThe door your have entered from has locked itself. \nTo exit the room, you must unlock the door you came from.\n You see a Table in the room with a dial on it.\n type\'start\' to continue.";
+    String Table_descrip = "On the table, you see a dial that can be set to various colours.";
+    String door_locked = "You push with all your might,\nand the door remains stubbornly \nlocked (type start to return to main menu)";
+    String door_unlocked = "HAZZA THE DOOR IS UNLOCKED! \nYOU HAVE COMPLETED THE LEVEL";
+    String curr_d_colour = "Current Dial colour: " + this.dial + "\n";
+    String new_d_colour = "\nDial colour now set to: " + this.dial + "\n\n(type start to return to main menu)";
+    String mainmenu = "\n\n1) Investigate the table \n2) Try to open the door";
+    String possibleValues = "\nR) Red \nG) Green \nB) Blue\n\n(type start to return to main menu)";
+    String prompts = "\nWhat action will you perform?";
+//------------------------------------------------------------------------------
+/*
+Setter and getter methods for user main menu choice, door, and the dial.
+*/
 //------------------------------------------------------------------------------
 public String getColour()
 {
-  return (dial);
+  return (this.dial);
+}
+//------------------------------------------------------------------------------
+String getDoor()
+{
+  return(this.door);
 }
 
-
+//------------------------------------------------------------------------------
+public void setDial(String d_colour)
+{
+  this.dial = d_colour;
+}
 
 //------------------------------------------------------------------------------
-  /*
-  Method: Displays main menu options to user.
+public void setMainMenuChoice(String userchoice)
+{
+  this.mainuserchoice = userchoice;
+}
 
-  Parameters: none
-
-  Return: user choice (action that they want to perform.)
-  */
-//------------------------------------------------------------------------------
-
-String printMainMenu()
-  {
-      Object[] possibleValues = { "1) Investigate the table" , "2) Try to open the door"};
-      String userchoice = (String)JOptionPane.showInputDialog(null,
-                      "What action will you perform?", "Input",
-                      JOptionPane.INFORMATION_MESSAGE, null,
-                      possibleValues, possibleValues[0]);
-
-    return (userchoice);
-  }
 //------------------------------------------------------------------------------
   /*
   Method: Displays user options for the dial colour.
@@ -74,120 +63,84 @@ String printMainMenu()
   Return: d_colour (colour user wishes to set dial to)
   */
 //------------------------------------------------------------------------------
-  String printTableMenu()
+  void choiceTableMenu(String d_colour)
   {
-    Object[] possibleValues = { "Red", "Green", "Blue"};
-    String d_colour = (String)JOptionPane.showInputDialog(null,
-                    "Which action do you choose to perform?", "Input",
-                    JOptionPane.INFORMATION_MESSAGE, null,
-                    possibleValues, possibleValues[0]);
     this.setDial(d_colour);
-    return (d_colour);
   }
+
 //------------------------------------------------------------------------------
   /*
-  Method: Sets dial colour to user choice
+  Method: changes dial colour to user choice
 
-  Parameters: d_colour (colour user wishes to set dial to)
+  Parameters: string colour (colour user wishes to set dial to)
 
   Return: new dial colour (stored in string)
 
   */
 //------------------------------------------------------------------------------
-String setDial(String d_colour)
+String changeDial(String colour)
 {
   this.curr_d_colour = "Current Dial colour: " + this.dial;
-  if (d_colour.equals("Red"))
+  getColour();
+  if (colour.equals("R"))
   {
     this.dial = "Red";
   }
 
-  else if (d_colour.equals("Green"))
+  else if (colour.equals("G"))
   {
     this.dial = "Green";
   }
 
-  else if (d_colour.equals("Blue"))
+  else if (colour.equals("B"))
   {
     this.dial = "Blue";
   }
   this.new_d_colour = "Dial colour now set to: " + this.dial;
+  setDial(this.dial);
   return(this.dial);
 }
 
 //------------------------------------------------------------------------------
    /*
-   Method: Sets the user key to true if the correct states of the dial is obtained
-           also adds "key5" to key_count list.
+   Method: Sets the user key to true if the correct states of the dial is obtained.
 
-   Parameters: none
+   Parameters: String dial
 
-   Return: boolean key5 (returns true or false)
+   Return: none
    */
+
 //------------------------------------------------------------------------------
-   boolean sw_Room()
+  public void changeKey(String dial)
    {
-     if (dial.equals("Green"))
+     if (this.dial.equals("Green"))
      {
-       key5 = true;
-       //key_count.add("key5");
+       this.key5 = true;
+
      }
-     return(key5);
    }
 //------------------------------------------------------------------------------
-   /*
-   Method: Determines if the user door will be set to true or false (true = unlocked,
-           false = locked).
+/*
+   Method: Determines if the user door will be set to locked or unlocked
 
-   Parameters: none
+   Parameters: boolean key
 
-   Return: boolean door (true or false)
-   */
+   Return: String door
+*/
 //------------------------------------------------------------------------------
-  boolean tryDoor()
+
+public  String tryDoor(boolean key5)
   {
     if (key5 == true)
     {
-      door = true;
+      this.door = door_unlocked;
+    }
+    else
+    {
+      this.door = door_locked;
     }
     return(door);
   }
 //------------------------------------------------------------------------------
-void play()
-{
-System.out.println( str_roominfo);
-while (gameStart == false)
-{
-  String userchoice = printMainMenu();
-  if (userchoice.equals("1) Investigate the table"))
-  {
-    while (key5 == false)
-      {
-          System.out.println( str_switchTable_descrip);
-          System.out.println( curr_d_colour);
-          printTableMenu();
-          getColour();
-          System.out.println(new_d_colour);
-          key5 = sw_Room();
-          tryDoor();
-        }
-      System.out.println( switchTable_set);
-    }
 
-    else if (userchoice.equals("2) Try to open the door"))
-        {
-          if (key5 == false)
-          {
-            System.out.println(door_locked);
-          }
-          else
-          {
-            System.out.println( door_unlocked);
-            gameStart = true;
-          }
-        }
-      }
-
-}
-//------------------------------------------------------------------------------
 }
