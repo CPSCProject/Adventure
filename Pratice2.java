@@ -303,45 +303,45 @@ public class Pratice2 extends JFrame implements ActionListener
 			
 			 // when you first pressed one button
 			 if(eve.getActionCommand() == "apple" && !buttonkey) {
-				JOptionPane.showMessageDialog(null, "you Pressed apple");
+				 storyT.setText("You pressed apple !!");
 				buttonkey = true;	
 			}
 			 
 			 if(eve.getActionCommand() == "apple2" && !buttonkey) {
-				JOptionPane.showMessageDialog(null, "you Pressed apple");
+				 storyT.setText("You pressed apple !!");
 				buttonkey = true;	
 			}
 			 
 			 if(eve.getActionCommand() == "airplane" && !buttonkey2) {
-				JOptionPane.showMessageDialog(null, "you pressed airplane");
+				 storyT.setText("You pressed airplane !!");
 				buttonkey2 = true;
 			}
 			 if(eve.getActionCommand() == "airplane2" && !buttonkey2) {
-				JOptionPane.showMessageDialog(null, "you pressed airplane");
+				 storyT.setText("You pressed airplane !!");
 				buttonkey2 = true;
 			}
 			
 			 // if apple was alread picked once
 			 
 			 if(eve.getActionCommand() == "apple2" && buttonkey == true) {
-				JOptionPane.showMessageDialog(null, "correct!!!!!!");
+				 storyT.setText("correct!");
 				gamecomplete = true;
 			}
 			 
 			 if(eve.getActionCommand() == "apple" && buttonkey == true) {
-				JOptionPane.showMessageDialog(null, "correct!!");
+				 storyT.setText("correct!");
 				gamecomplete = true;
 			}
 			 
 			 // if airplane was already picked once  
 
 			 if(eve.getActionCommand() == "airplane" && buttonkey2) {
-				JOptionPane.showMessageDialog(null, "correct!!");
+				 storyT.setText("correct!");
 				gamecomplete2 = true;
 			}
 			 
 			 if(eve.getActionCommand() == "airplane2" && buttonkey2) {
-				JOptionPane.showMessageDialog(null, "correct!!");
+				 storyT.setText("correct!");
 				gamecomplete2 = true;
 			}
 			 
