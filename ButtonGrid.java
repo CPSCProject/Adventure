@@ -27,7 +27,7 @@ public class ButtonGrid extends JFrame implements ActionListener
 	public JButton commandB3;
 	public JButton commandB4;
 	public JButton commandB5;
-	public JButton Image1, Image2, Image3, Image4;
+	private JButton Image1, Image2, Image3, Image4;
 	Timer timer;
 
     //the paths for the 10 different JPEG pictures (2 for each of the 5 rooms)
@@ -73,6 +73,7 @@ public class ButtonGrid extends JFrame implements ActionListener
 		JPanel p2 = new JPanel(); //This is where status is displayed.
 		p2.setBounds(670,10, 325, 350);
 		p2.setBackground(Color.black);
+
 
 		JPanel p3 = new JPanel(); //This is where story text is displayed.
 		p3.setBounds(10, 370, 650, 350);
@@ -135,7 +136,7 @@ public class ButtonGrid extends JFrame implements ActionListener
 		// images to icon
 
         ImageIcon kitchenIcon = new ImageIcon(kitchenPath);
-		ImageIcon kitchenIcon1  = new ImageIcon(kitchenPathKey);
+	/*	ImageIcon kitchenIcon1  = new ImageIcon(kitchenPathKey);
 		ImageIcon dungeonIcon = new ImageIcon(dungeonPath);
 		ImageIcon dungeonIcon2 = new ImageIcon(dungeonPathKey);
         ImageIcon boilerIcon = new ImageIcon(boilerPath);
@@ -143,10 +144,10 @@ public class ButtonGrid extends JFrame implements ActionListener
         ImageIcon libraryIcon = new ImageIcon(libraryPath);
 		ImageIcon libraryIcon4 = new ImageIcon(libraryPathKey);
         ImageIcon bedroomIcon = new ImageIcon(bedroomPath);
-		ImageIcon bedroomIcon5 = new ImageIcon(bedroomPathKey);
+		ImageIcon bedroomIcon5 = new ImageIcon(bedroomPathKey); */
 
         Image kitchenImage = kitchenIcon.getImage();
-        Image kitchenImage1= kitchenIcon1.getImage();
+        /*Image kitchenImage1= kitchenIcon1.getImage();
 		Image dungeonImage = dungeonIcon.getImage();
 		Image dungeonImage2= dungeonIcon2.getImage();
 		Image boilerImage = boilerIcon.getImage();
@@ -154,10 +155,10 @@ public class ButtonGrid extends JFrame implements ActionListener
         Image libraryImage = libraryIcon.getImage();
         Image libraryImage4 = libraryIcon4.getImage();
         Image bedroomImage = bedroomIcon.getImage();
-        Image bedroomImage5 = bedroomIcon5.getImage();
+        Image bedroomImage5 = bedroomIcon5.getImage();*/
 
 		Image changedImg = kitchenImage.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
-		Image changedImg2 = kitchenImage1.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
+		/*Image changedImg2 = kitchenImage1.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
 		Image changedImg3 = dungeonImage.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
 		Image changedImg4 = dungeonImage2.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
         Image changedImg5 = boilerImage.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
@@ -165,12 +166,12 @@ public class ButtonGrid extends JFrame implements ActionListener
 		Image changedImg7 = libraryImage.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
         Image changedImg8 = libraryImage4.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
 		Image changedImg9 = bedroomImage.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
-		Image changedImg10 = bedroomImage5.getScaledInstance(320, 320, Image.SCALE_SMOOTH );
+		Image changedImg10 = bedroomImage5.getScaledInstance(320, 320, Image.SCALE_SMOOTH ); */
 
 
 
 	    ImageIcon Icon = new ImageIcon(changedImg);
-	    ImageIcon Icon2 = new ImageIcon(changedImg2);
+	    /*ImageIcon Icon2 = new ImageIcon(changedImg2);
 		ImageIcon Icon3 = new ImageIcon(changedImg3);
 		ImageIcon Icon4 = new ImageIcon(changedImg4);
         ImageIcon Icon5 = new ImageIcon(changedImg5);
@@ -178,10 +179,10 @@ public class ButtonGrid extends JFrame implements ActionListener
 		ImageIcon Icon7 = new ImageIcon(changedImg7);
 		ImageIcon Icon8 = new ImageIcon(changedImg8);
         ImageIcon Icon9 = new ImageIcon(changedImg9);
-	    ImageIcon Icon10 = new ImageIcon(changedImg10);
+	    ImageIcon Icon10 = new ImageIcon(changedImg10); */
 
 	 	JButton Image1 = new JButton(Icon);
-		JButton Image2 = new JButton(Icon2);
+		/*JButton Image2 = new JButton(Icon2);
 		JButton Image3 = new JButton(Icon3);
 		JButton Image4 = new JButton(Icon4);
         JButton Image5 = new JButton(Icon5);
@@ -189,7 +190,8 @@ public class ButtonGrid extends JFrame implements ActionListener
         JButton Image7 = new JButton(Icon7);
 		JButton Image8 = new JButton(Icon8);
         JButton Image9 = new JButton(Icon9);
-		JButton Image10 = new JButton(Icon10);
+		JButton Image10 = new JButton(Icon10);  */
+
 
 
 
@@ -200,6 +202,7 @@ public class ButtonGrid extends JFrame implements ActionListener
 
 		// Add Text>>Panel>>Window
 		//p1.add(graphic);
+	   // p2.add(Image1);
 	    p2.add(Image1);
 		p3.add(storyT);
 		p4.add(commandB1);
