@@ -48,7 +48,7 @@ public void opening(String displaymessage)
     window.setBounds(200,200,1024,868);
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setBackground(Color.pink);
-    window.setLayout(null); //Disabling the default layout.
+    window.setLayout(new GridLayout(2,4,1,1)); //Disabling the default layout.
 
     Font basicfont = new Font("Comic Sans", Font.PLAIN, 20);
 
@@ -86,6 +86,7 @@ public void opening(String displaymessage)
     JButton commandB2 = new JButton("2: view difficulty");
     commandB2.setBackground(Color.white);
     commandB2.setForeground(Color.pink);
+    /*
     JButton commandB3 = new JButton("");
     commandB3.setBackground(Color.pink);
     commandB3.setForeground(Color.white);
@@ -95,10 +96,10 @@ public void opening(String displaymessage)
     JButton commandB5 = new JButton("");
     commandB5.setBackground(Color.pink);
     commandB5.setForeground(Color.white);
-
+    */
     //Graphic setup
-    graphic = new JButton(new ImageIcon("flower.jpg"));
-    graphic.setBackground(Color.pink);
+    //graphic = new JButton(new ImageIcon("flower.jpg"));
+    //graphic.setBackground(Color.pink);
 
 
     //Status text setup
@@ -124,15 +125,15 @@ public void opening(String displaymessage)
 
     // Add Text>>Panel>>Window
 
-    p2.add(statusT);
-    p3.add(storyT);
+    p3.add(statusT);
+    p2.add(storyT);
     p4.add(commandB1);
     p4.add(commandB2);
-    p4.add(commandB3);
-    p4.add(commandB4);
-    p4.add(commandB5);
+    //p4.add(commandB3);
+    //p4.add(commandB4);
+    //p4.add(commandB5);
     p5.add(input);
-    p1.add(graphic);
+    //p1.add(graphic);
 
 
     window.add(p1);
@@ -204,5 +205,6 @@ public void actionPerformed(ActionEvent e)
       storyT.setText(puzzle8menu);
       input.selectAll();
     }
+
 }
 }
