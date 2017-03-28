@@ -12,6 +12,12 @@ public class ButtonGrid extends JFrame implements ActionListener
 {
 
 
+//-------------------------------------------//-------------------------------------------
+/* Just search for //copy this code 
+Those lines of code are the main part.
+Once I figure out how to change the pictures, then the other parts will become relevant but they are not used for now. */
+//-------------------------------------------//-------------------------------------------
+
 	JFrame window;
 	JPanel p1;
 	JPanel p2;
