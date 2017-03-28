@@ -19,15 +19,23 @@ public class Pratice extends JFrame implements ActionListener
 	JButton graphic;
 	JTextArea statusT;
 	JTextArea storyT;
+	static boolean option = true;
+
 	JTextField input;
 	private JButton commandB1, commandB2, commandB3, commandB4, commandB5;
 	private JButton Image1, Image2, Image3, Image4;
+	private Image changedImg, changedImg2;
 	Timer timer;
 	String applePath = "apple.jpg";
 	String planePath = "plane.jpg";
 	private JLabel label;
 	private JButton button;
 	private JTextField textfield;
+	private boolean key = false;
+	private boolean buttonkey = false;
+	private boolean buttonkey2 = false;
+	private boolean gamecomplete = false;
+	private boolean gamecomplete2 = false;
 
 	public static void main(String[]args)
 	{
@@ -84,7 +92,9 @@ public class Pratice extends JFrame implements ActionListener
 
 
 		JButton commandB1 = new JButton("1:Help");
+		commandB1.addActionListener(new ButtonListener());
 		JButton commandB2 = new JButton("2:Attack the man");
+		commandB2.addActionListener(new ButtonListener());
 		JButton commandB3 = new JButton("3:Drink");
 		JButton commandB4 = new JButton("4:Leave");
 		JButton commandB5 = new JButton("5:(Debug)Clear the text");
@@ -143,6 +153,22 @@ public class Pratice extends JFrame implements ActionListener
 		JButton Image3 = new JButton(Icon3);
 		JButton Image4 = new JButton(Icon4);
 
+		Image1.addActionListener(this);
+		Image1.addActionListener(new ButtonListener());
+		Image1.setActionCommand("apple");
+
+		
+		Image2.addActionListener(this);
+		Image2.setActionCommand("apple2");
+		Image2.addActionListener(new ButtonListener());
+		
+		Image3.addActionListener(this);
+		Image3.setActionCommand("airplane");
+		Image3.addActionListener(new ButtonListener());
+		
+		Image4.addActionListener(this);
+		Image4.setActionCommand("airplane2");
+		Image4.addActionListener(new ButtonListener());
 
 
 
@@ -151,14 +177,6 @@ public class Pratice extends JFrame implements ActionListener
 
 
 
-
-
-
-
-
-		//p6.add(Image1);
-
-		//p6.add(btn4);
 
 
 		// Add Text>>Panel>>Window
@@ -170,7 +188,6 @@ public class Pratice extends JFrame implements ActionListener
 		p4.add(commandB3);
 		p4.add(commandB4);
 		p4.add(commandB5);
-		//  p5.add(input);
 		p6.add(Image1);
 		p6.add(Image2);
 		p6.add(Image3);
@@ -183,100 +200,154 @@ public class Pratice extends JFrame implements ActionListener
 		window.add(p6);
 
 		window.setVisible(true);
+		System.out.println("hihihihi");
 	}
-	
-	
-
-	public void actionPerformed(ActionEvent e)
-	{
-
-		String choice = input.getText();
-		input.selectAll();
-
-		if(choice.equals("1")){
-			storyT.setText("You are walking towards the table. \nYou notice a crumpled piece of paper and a knife.\n Choose your move: \n(1) Pick up the knife.\n(2) Pick up the piece of paper");
-			input.selectAll();
-			if(choice.equals("2")){
-				storyT.setText("There are three shapes drawn on the paper: a triangle, \na square and a pentagon.");
-				storyT.setText("There is a table across the room. \nYou see a cabinet and hope to find something useful\n (1) Move towards the Table.\n (2) Try to open the Cabinet.");
-			}
-		}
-		if(choice.equals("2"))
-		{
-			storyT.setText("What, you think you can rob me?!\n\nThe inkeeper attacked!\n6870 points of damage!\nYou are dead.");
-		}
-		if(choice.equals("3"))
-		{
-			storyT.setText("Sorry, we can't serve booze anymore because of the restriction by the lord");
-		}
-		if(choice.equals("4"))
-		{
-			storyT.setText("See ya.");
-		}
-		if(choice.equals("5"))
-		{
-			storyT.setText("");
-		}
-
-	}
-
-
-	public JButton getButton() {
-		return this.commandB1;
-	}
-
-	public JButton getImage() {
-		return this.Image1;
-	}
-	
-	public JButton getImage2() {
-		return this.Image2;
-	}
-	
-	public JButton getImage3() {
-		return this.Image3;
-	}
-	
-	public JButton getImage4() {
-		return this.Image4;
-	}
-
-
-}
-
-
-
-
-
-class ButtonListener implements ActionListener {
-	ButtonListener() {
-		
-		  Pratice frame = new Pratice();
-		  JButton theWidth = frame.getImage();
-		  JButton commandB1 = frame.getButton();
-	}
-
-
-
-
 
 	private void setAction()
 	{
-		//commandB1.addActionListener(this);
-		//commandB1.setActionCommand("help");
+		System.out.println("hihihihi");
+		commandB1.addActionListener(this);
+		commandB1.setActionCommand("1:Help");
+		commandB2.addActionListener(this);
+		commandB2.setActionCommand("2:Attack the man");
+		Image1.addActionListener(this);
+		//Image1.setActionCommand(Icon);
+
+
 
 	}
 
+	// unnecssary part
+
 	public void actionPerformed(ActionEvent eve)
 	{
-		if(eve.getActionCommand() == "1:Help")
-			JOptionPane.showMessageDialog(null, "JButton01 Pressed");
-		else if(eve.getActionCommand() == "jb2")
-			JOptionPane.showMessageDialog(null, "JButton02 Pressed");
-		else if(eve.getActionCommand() == "jb3")
-			JOptionPane.showMessageDialog(null, "JButton03 Pressed");
-	} 
+		System.out.print("syste");
+
+		//if(eve.getActionCommand() == "apple") {
+			//System.out.println("hihihihi");
+			//JOptionPane.showMessageDialog(null, "Please select the same card to acheive an key"); }
+
+
+
+
+
+	}
+
+
+
+	public Image getchangedImg2(){
+		return changedImg2;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	class ButtonListener implements ActionListener {
+		ButtonListener() {
+
+
+		}
+
+
+		/// to make it perform 
+		public void actionPerformed(ActionEvent eve)
+		{
+
+
+
+			if(eve.getActionCommand() == "1:Help") {
+				JOptionPane.showMessageDialog(null, "please selct the same card to acheive  a key !!");
+				key = true;
+				//commandB1.setVisible(false);
+				//JButton Image1 = new JButton(Icon5);
+
+			}
+
+			// when you first pressed one button
+			else if(eve.getActionCommand() == "apple" && !buttonkey) {
+				storyT.setText("You pressed apple !!");
+				buttonkey = true;	
+			}
+
+			else  if(eve.getActionCommand() == "apple2" && !buttonkey) {
+				System.out.println("Asdfadsf");
+				storyT.setText("You pressed apple !!");
+				buttonkey = true;	
+			}
+
+			else if(eve.getActionCommand() == "airplane" && !buttonkey2) {
+				storyT.setText("You pressed airplane !!");
+				buttonkey2 = true;
+			}
+			else  if(eve.getActionCommand() == "airplane2" && !buttonkey2) {
+				storyT.setText("You pressed airplane !!");
+				buttonkey2 = true;
+			}
+
+			// if apple was alread picked once
+
+			else  if(eve.getActionCommand() == "apple2" && buttonkey == true) {
+				storyT.setText("correct!");
+				gamecomplete = true;
+			}
+
+			else if(eve.getActionCommand() == "apple" && buttonkey == true) {
+				storyT.setText("correct!");
+				gamecomplete = true;
+			}
+
+			// if airplane was already picked once  
+
+			else if(eve.getActionCommand() == "airplane" && buttonkey2) {
+				storyT.setText("correct!");
+				gamecomplete2 = true;
+			}
+
+			else  if(eve.getActionCommand() == "airplane2" && buttonkey2) {
+				storyT.setText("correct!");
+				gamecomplete2 = true;
+			}
+
+			else
+			{
+				System.out.print("default");
+			}
+
+
+			if(gamecomplete && gamecomplete2) {
+				storyT.setText("You finshed the game !!");
+
+
+
+
+
+
+
+
+
+
+
+
+			} 
+
+
+		}
+
+
+	}
 }
+
+
 
 
 
