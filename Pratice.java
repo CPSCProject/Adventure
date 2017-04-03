@@ -28,6 +28,7 @@ public class Pratice extends JFrame implements ActionListener
 	Timer timer;
 	String applePath = "apple.jpg";
 	String planePath = "plane.jpg";
+	String emptyPath = "empty.jpg";
 	private JLabel label;
 	private JButton button;
 	private JTextField textfield;
@@ -297,8 +298,11 @@ public class Pratice extends JFrame implements ActionListener
 			// if apple was alread picked once
 
 			else  if(eve.getActionCommand() == "apple2" && buttonkey == true) {
+				JButton tempbtn = (JButton) eve.getSource();
 				storyT.setText("correct!");
 				gamecomplete = true;
+				tempbtn.setIcon(new ImageIcon(emptyPath));
+				System.out.println("dddddddd");
 			}
 
 			else if(eve.getActionCommand() == "apple" && buttonkey == true) {
