@@ -118,6 +118,10 @@ String changeDial(String colour)
        this.key5 = true;
 
      }
+     else
+     {
+      this.key5 = false;
+     }
    }
 //------------------------------------------------------------------------------
 /*
