@@ -1,0 +1,7 @@
+In this adventure game, you must obtain keys to escape from this room. as you play this game. you will see that each room contains different games that requires different skills to complete. Timer will be set based on the diffculty that you choose. you will lose lives if the timer is set to zero. 
+
+
+Welcome to library. This room will give you few questions that requries your knowledge and wits. 
+Questions could be a puzzle, a phrase, or combinations of words. After finshing this game, you will obtain a key to go to the next room. 
+
+Welcome to kithcen. In this room, you will be required to satisfy certain conditions to finsih the game. You must first decide whether to enter or exit the room. After finshing this game. you will get a key to escape from this game.
