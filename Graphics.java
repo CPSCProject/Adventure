@@ -1,20 +1,22 @@
 /*
 Hey guys, this is the version of the GUI for the game. Most of the main stuff is
 layed out.
-
 A few more things need to be added, like the timer and the maps. If these can be
 added, it would make it a lot easier to start adding in menu options and determining
 card order.
-
 When the program starts, it comes as a really small pop up instead of a full sized
 window. I'm not sure how to fix this feel free to fix it if you know the problem.
 */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Graphics extends JFrame
+
 {
+
 final static boolean shouldWeightX = true;
 JFrame mainwindow;
 JPanel mainpanel;
@@ -72,8 +74,62 @@ public void opening()
   questionpanel.setBackground(Color.PINK);
   mainPanel.add(questionpanel,c);
 
+
+  //add map image---------------------------------------------------------------
+
+  String mapPath = "map.jpg";
+  ImageIcon mapIcon = new ImageIcon(mapPath);
+  Image mapImage = mapIcon.getImage();
+  Image mapImg = mapImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+  ImageIcon mapIcon1 = new ImageIcon(mapImg);
+  JButton map = new JButton(mapIcon1);
+
+
+  //add room buttons on map---------------------------------------------------------------
+
+  JButton dungeon = new JButton("Dungeon");
+  dungeon.setBounds(10, 10, 20, 20);
+  dungeon.setSize(50,50);
+  JButton kitchen = new JButton("Kitchen");
+  kitchen.setBounds(10, 10, 200, 200);
+  kitchen.setSize(50,50);
+  JButton boiler = new JButton("Boiler");
+  boiler.setBounds(10, 10, 200, 200);
+  boiler.setSize(50,50);
+  JButton library = new JButton("Library");
+  library.setBounds(10, 10, 200, 200);
+  library.setSize(50,50);
+  JButton bedroom = new JButton("Bedroom");
+  bedroom.setBounds(10, 10, 200, 200);
+  bedroom.setSize(50,50);
+
+
+ //add clickable actions on the map buttons---------------------------------------------------------------
+  /*
+  dungeon.addActionListener(this);
+  dungeon.setActionCommand("Dungeon");
+  dungeon.addActionListener(new ButtonListener());
+
+  kitchen.addActionListener(this);
+  kitchen.setActionCommand("Kitchen");
+  kitchen.addActionListener(new ButtonListener());
+
+  boiler.addActionListener(this);
+  boiler.setActionCommand("Boiler");
+  boiler.addActionListener(new ButtonListener());
+
+  library.addActionListener(this);
+  library.setActionCommand("Library");
+  library.addActionListener(new ButtonListener());
+
+  bedroom.addActionListener(this);
+  bedroom.setActionCommand("Bedroom");
+  bedroom.addActionListener(new ButtonListener()); */
+
 //add map Panel-----------------------------------------------------------------
   JPanel mappanel = new JPanel(new CardLayout());
+
+  //mappanel.setLayout(new GridLayout(6,1));
   /*
    add the map version to a new card (create a new panel for each card and then
    add it to the mappanel NOT the main panel otherwise everthing gets messed up) :P
@@ -83,7 +139,20 @@ public void opening()
   c.weightx = 10.0;
   c.weighty = 15.0;
   mappanel.setBackground(Color.RED);
+  mappanel.add(map);
+  /*mappanel.add(dungeon);
+  mappanel.add(library);
+  mappanel.add(kitchen);
+  mappanel.add(boiler);
+  mappanel.add(bedroom);*/
+
+
+
+
   mainPanel.add(mappanel,c);
+
+
+
 
 //Add answer Panel--------------------------------------------------------------
   JPanel answerpanel = new JPanel(new CardLayout());
@@ -150,4 +219,53 @@ public void opening()
 
       game.opening();
   }
+
+/*  class ButtonListener implements ActionListener
+  {
+          ButtonListener() {
+          }
+
+
+    /*      /// to make it perform
+          public void actionPerformed(ActionEvent eve)
+          {
+
+
+              if(eve.getActionCommand() == "1:Help") {
+                  JOptionPane.showMessageDialog(null, "Hello");
+
+                  //commandB1.setVisible(false);
+                  //JButton Image1 = new JButton(Icon5);
+
+              }
+
+              // when you first pressed one button
+              else if(eve.getActionCommand() == "Dungeon")
+              {
+                  storyT.setText("You have entered the dungeon!");
+
+              }
+
+              else  if(eve.getActionCommand() == "Kitchen")
+              {
+                  storyT.setText("You have entered the kitchen!");
+
+              }
+
+              else if(eve.getActionCommand() == "Boiler")
+              {
+                  storyT.setText("You have entered the boiler!");
+
+              }
+              else  if(eve.getActionCommand() == "Bedroom")
+              {
+                  storyT.setText("You have entered the bedroom!");
+
+              }
+              else  if(eve.getActionCommand() == "Library")
+              {
+                  storyT.setText("You have entered the library");
+              }
+          }  */
+  //}
 }
