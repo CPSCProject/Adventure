@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 public class Graphics extends JFrame implements ActionListener
 
 {
@@ -22,6 +23,7 @@ JTextArea storyT;
 JButton quitbutton;
 JButton getclue;
 JTextField input;
+
 
 
 
@@ -69,7 +71,7 @@ public void opening()
   mainPanel.add(questionpanel,c);
 
 
-  //add map image---------------------------------------------------------------
+ //add map image---------------------------------------------------------------
 
   String mapPath = "map.jpg";
   ImageIcon mapIcon = new ImageIcon(mapPath);
@@ -78,43 +80,24 @@ public void opening()
   ImageIcon mapIcon1 = new ImageIcon(mapImg);
   JButton map = new JButton(mapIcon1);
 
+ //add kitchen image---------------------------------------------------------------
 
-  //add room buttons on map---------------------------------------------------------------
+  String kitchenPath = "kitchen.jpg";
+  ImageIcon kitchenIcon = new ImageIcon(kitchenPath);
+  Image kitchenImage = kitchenIcon.getImage();
+  Image kitchenImg = kitchenImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+  ImageIcon mapIcon2 = new ImageIcon(kitchenImg);
+  JButton kitchen = new JButton(mapIcon2);
 
-  JButton dungeon = new JButton("Dungeon");
-  dungeon.setBounds(10, 10, 20, 20);
-  dungeon.setSize(50,50);
-  JButton kitchen = new JButton("Kitchen");
-  kitchen.setBounds(10, 10, 200, 200);
-  kitchen.setSize(50,50);
-  JButton boiler = new JButton("Boiler");
-  boiler.setBounds(10, 10, 200, 200);
-  boiler.setSize(50,50);
-  JButton library = new JButton("Library");
-  library.setBounds(10, 10, 200, 200);
-  library.setSize(50,50);
-  JButton bedroom = new JButton("Bedroom");
-  bedroom.setBounds(10, 10, 200, 200);
-  bedroom.setSize(50,50);
+ //add library image---------------------------------------------------------------
 
+  String libraryPath = "library.jpg";
+  ImageIcon libraryIcon = new ImageIcon(libraryPath);
+  Image libraryImage = libraryIcon.getImage();
+  Image libraryImg = libraryImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+  ImageIcon mapIcon3 = new ImageIcon(libraryImg);
+  JButton library = new JButton(mapIcon3);
 
- //add clickable actions on the map buttons---------------------------------------------------------------
-  /*
-  dungeon.addActionListener(this);
-  dungeon.setActionCommand("Dungeon");
-  dungeon.addActionListener(new ButtonListener());
-  kitchen.addActionListener(this);
-  kitchen.setActionCommand("Kitchen");
-  kitchen.addActionListener(new ButtonListener());
-  boiler.addActionListener(this);
-  boiler.setActionCommand("Boiler");
-  boiler.addActionListener(new ButtonListener());
-  library.addActionListener(this);
-  library.setActionCommand("Library");
-  library.addActionListener(new ButtonListener());
-  bedroom.addActionListener(this);
-  bedroom.setActionCommand("Bedroom");
-  bedroom.addActionListener(new ButtonListener()); */
 
 //add map Panel-----------------------------------------------------------------
   JPanel mappanel = new JPanel(new CardLayout());
@@ -129,18 +112,28 @@ public void opening()
   c.weightx = 10.0;
   c.weighty = 15.0;
   mappanel.setBackground(Color.RED);
-  mappanel.add(map);
-  /*mappanel.add(dungeon);
-  mappanel.add(library);
-  mappanel.add(kitchen);
-  mappanel.add(boiler);
-  mappanel.add(bedroom);*/
 
+  JPanel mapCard = new JPanel();
+  mapCard.add(map);
 
+  JPanel kitchenCard = new JPanel();
+  kitchenCard.add(kitchen);
+
+  JPanel libraryCard = new JPanel();
+  libraryCard.add(library);
+
+  mappanel.add(mapCard, "mapCard");
+  mappanel.add(kitchenCard, "kitchenCard");
+  mappanel.add(libraryCard,"libraryCard");
+
+  CardLayout cardLayout = (CardLayout) mappanel.getLayout();
+
+  cardLayout.show(mappanel, "mapCard");
+  //cardLayout.show(mappanel, "libraryCard");
+  //cardLayout.show(mappanel, "kitchenCard");
 
 
   mainPanel.add(mappanel,c);
-
 
 
 
@@ -211,6 +204,8 @@ public void opening()
 
   public void actionPerformed(ActionEvent e)
   {
+
+
       String lchoice = input.getText();
       if (lchoice.equals("mailbox") || lchoice.equals("alphabet")) {
         Library key1p1 = new Library();
@@ -272,43 +267,6 @@ public void opening()
   public static void main(String[]args)
   {
      Graphics game = new Graphics();
-
-      game.opening();
+     game.opening();
   }
-
-/*  class ButtonListener implements ActionListener
-  {
-          ButtonListener() {
-          }
-    /*      /// to make it perform
-          public void actionPerformed(ActionEvent eve)
-          {
-              if(eve.getActionCommand() == "1:Help") {
-                  JOptionPane.showMessageDialog(null, "Hello");
-                  //commandB1.setVisible(false);
-                  //JButton Image1 = new JButton(Icon5);
-              }
-              // when you first pressed one button
-              else if(eve.getActionCommand() == "Dungeon")
-              {
-                  storyT.setText("You have entered the dungeon!");
-              }
-              else  if(eve.getActionCommand() == "Kitchen")
-              {
-                  storyT.setText("You have entered the kitchen!");
-              }
-              else if(eve.getActionCommand() == "Boiler")
-              {
-                  storyT.setText("You have entered the boiler!");
-              }
-              else  if(eve.getActionCommand() == "Bedroom")
-              {
-                  storyT.setText("You have entered the bedroom!");
-              }
-              else  if(eve.getActionCommand() == "Library")
-              {
-                  storyT.setText("You have entered the library");
-              }
-          }  */
-  //}
 }
