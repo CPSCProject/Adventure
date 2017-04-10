@@ -40,7 +40,7 @@ public class Library
 *Displays description of library room from text file
 */
 public String libraryDescription() {
-  String lDescription;
+  String lDescription, lDescription1, lDescription2, lDescription3;
   try {
     fr = new FileReader("Riddles.txt");
     br = new BufferedReader(fr);
@@ -49,7 +49,10 @@ public String libraryDescription() {
       name.add(line);
     }
     namesArray = name.toArray(new String[name.size()]);
-    lDescription = name.get(8);
+    lDescription1 = name.get(8);
+    lDescription2 = name.get(9);
+    lDescription3 = name.get(10);
+    lDescription = (lDescription1 + "\n" + lDescription2 + "\n" + lDescription3);
   }
   catch (IndexOutOfBoundsException e) {
   lDescription = "Index is out of bounds";
