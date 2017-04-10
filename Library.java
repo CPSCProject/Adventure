@@ -36,7 +36,32 @@ public class Library
 *8 riddles that will display one after another if the previous answer is right
 *returns: String of new riddle depending on if answers are right
 */
-
+/**
+*Displays description of library room from text file
+*/
+public String libraryDescription() {
+  String lDescription;
+  try {
+    fr = new FileReader("Riddles.txt");
+    br = new BufferedReader(fr);
+    br = new BufferedReader(new FileReader("Riddles.txt"));
+    while ((line = br.readLine()) != null) {
+      name.add(line);
+    }
+    namesArray = name.toArray(new String[name.size()]);
+    lDescription = name.get(8);
+  }
+  catch (IndexOutOfBoundsException e) {
+  lDescription = "Index is out of bounds";
+  }
+  catch (FileNotFoundException e) {
+  lDescription = "File is not found";
+  }
+  catch (IOException e) {
+  lDescription = "IOexception arose";
+  }
+  return lDescription;
+}
 /**
 *Riddle 2
 *checks answer of previous question and if it is right the next question is displayed
