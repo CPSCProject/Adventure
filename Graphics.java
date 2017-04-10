@@ -52,7 +52,9 @@ public void opening()
   c.weightx = 4.0;
   c.weighty = 15.0;
   c.fill = GridBagConstraints.BOTH;
-  story.add(new JTextArea("This is where the room description will go."));
+  Library key1desc = new Library();
+  String lDescription = key1desc.libraryDescription();
+  story.add(new JTextArea(lDescription));
   story.setBackground(Color.YELLOW);
   mainPanel.add(story,c);
 
