@@ -23,8 +23,8 @@ JTextArea storyT;
 JButton quitbutton;
 JButton getclue;
 JTextField input;
-
-
+ActionListener quitB;
+ActionListener getHintB;
 
 
 public void opening()
@@ -33,7 +33,7 @@ public void opening()
   mainframe.setSize(1000,1000);
   JPanel mainPanel = new JPanel(new GridBagLayout());
   GridBagConstraints c = new GridBagConstraints();
-
+  Font basicfont = new Font("Comic Sans", Font.PLAIN, 60);
 //add user status---------------------------------------------------------------
   JPanel userstatus = new JPanel();
   c.gridx = 0;
@@ -64,7 +64,7 @@ public void opening()
   c.weighty = 15.0;
   c.fill = GridBagConstraints.BOTH;
   //questionpanel.add(new JTextArea("This is where the question will go."));
-  storyT = new JTextArea("You have entered the library. \nRiddle 1: What is a 7 letter word containing thousands of letters? \n1. mailbox \n2. alphabet ");
+  storyT = new JTextArea("You have entered the library. \nRiddle 1: What is a 7 letter word containing thousands of letters? Is it mailbox or alphabet? ");
   questionpanel.add(storyT);
   //question1panel.add(new JTextArea("You have entered the library. \nRiddle 1: What is a 7 letter word containing thousands of letters? \n1. mailbox \n2. alphabet "));
   questionpanel.setBackground(Color.PINK);
@@ -182,6 +182,14 @@ public void opening()
   buttonpanel.add(getclue);
   mainPanel.add(buttonpanel,c);
 
+//Add actionlisnter to JButton--------------------------------------------------
+   //quitB = new ActionListener();
+   //getHintB = new ActionListener();
+   quitbutton.addActionListener(this);
+   quitbutton.setActionCommand("Quit Game");
+   getclue.addActionListener(this);
+   getclue.setActionCommand("Get Hint");
+
 //Add timer panel---------------------------------------------------------------
   JPanel timerpanel = new JPanel();
   c.gridx = 0;
@@ -207,6 +215,13 @@ public void opening()
 
 
       String lchoice = input.getText();
+      if(e.getActionCommand() == "Get Hint") {
+         JOptionPane.showMessageDialog(null, "hint ");
+     }
+
+     if(e.getActionCommand() == "Quit Game") {
+         System.exit(0);
+     }
       if (lchoice.equals("mailbox") || lchoice.equals("alphabet")) {
         Library key1p1 = new Library();
         String puzzle1menu = key1p1.puzzle1method(lchoice);
