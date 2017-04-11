@@ -4,7 +4,15 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+/**
+* @authors  Erika Fung, Rumika Mascarenhas, Neera Phell, John Kim, Jiahe Huang
+*
+* The Graphics class creates the GUI portion of the game.
+* The Graphics class first creates the main JFrame window and adds JPanels in
+* a gridbag layout to the JFrame window. The size of the JPanels are determined by
+* their weightx and weighty
+*
+*/
 
 
 public class Graphics extends JFrame implements ActionListener
@@ -36,7 +44,11 @@ public void opening()
   JPanel mainPanel = new JPanel(new GridBagLayout());
   GridBagConstraints c = new GridBagConstraints();
   Font basicfont = new Font("Comic Sans", Font.PLAIN, 60);
-//add user status---------------------------------------------------------------
+/** add user status---------------------------------------------------------------
+*   Top left panel
+*   4x space among columns
+*   15x space among rows
+*/
   JPanel userstatus = new JPanel();
   c.gridx = 0;
   c.gridy = 0;
@@ -44,10 +56,23 @@ public void opening()
   c.weighty = 15.0;
   c.fill = GridBagConstraints.BOTH;
   userstatus.setBackground(Color.ORANGE);
-  userstatus.add(new JTextArea("This is where the user status will go."));
+  userstatus.add(window);
   mainPanel.add(userstatus,c);
 
-// add room description---------------------------------------------------------
+//add map image---------------------------------------------------------------
+
+    String windowPath = "window.jpg";
+    ImageIcon windowIcon = new ImageIcon(windowPath);
+    Image windowImage = windowIcon.getImage();
+    Image windowImg = windowImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+    ImageIcon mapIcon1 = new ImageIcon(windowImg);
+    JButton window = new JButton(mapIcon1);
+
+/** add room description---------------------------------------------------------
+*   Middle left panel
+*   4x space among columns
+*   15x space among rows
+*/
   JPanel story = new JPanel();
   c.gridx = 0;
   c.gridy = 1;
@@ -60,7 +85,12 @@ public void opening()
   story.setBackground(Color.YELLOW);
   mainPanel.add(story,c);
 
-//add question Panel------------------------------------------------------------
+  /**add question Panel------------------------------------------------------------
+  *   Middle top panel
+  *   10x space among columns
+  *   15x space among rows
+
+  */
   JPanel questionpanel = new JPanel();
   c.gridx = 1;
   c.gridy = 0;
@@ -74,8 +104,7 @@ public void opening()
   questionpanel.setBackground(Color.PINK);
   mainPanel.add(questionpanel,c);
 
-
- //add map image---------------------------------------------------------------
+//add map image---------------------------------------------------------------
 
   String mapPath = "map.jpg";
   ImageIcon mapIcon = new ImageIcon(mapPath);
@@ -84,66 +113,29 @@ public void opening()
   ImageIcon mapIcon1 = new ImageIcon(mapImg);
   JButton map = new JButton(mapIcon1);
 
- //add kitchen image---------------------------------------------------------------
-
-  String kitchenPath = "kitchen.jpg";
-  ImageIcon kitchenIcon = new ImageIcon(kitchenPath);
-  Image kitchenImage = kitchenIcon.getImage();
-  Image kitchenImg = kitchenImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-  ImageIcon mapIcon2 = new ImageIcon(kitchenImg);
-  JButton kitchen = new JButton(mapIcon2);
-
- //add library image---------------------------------------------------------------
-
-  String libraryPath = "library.jpg";
-  ImageIcon libraryIcon = new ImageIcon(libraryPath);
-  Image libraryImage = libraryIcon.getImage();
-  Image libraryImg = libraryImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-  ImageIcon mapIcon3 = new ImageIcon(libraryImg);
-  JButton library = new JButton(mapIcon3);
-
-
-//add map Panel-----------------------------------------------------------------
+/**add map Panel-----------------------------------------------------------------
+*   Top right panel
+*   10x space among columns
+*   15x space among rows
+*/
   JPanel mappanel = new JPanel(new CardLayout());
 
-  //mappanel.setLayout(new GridLayout(6,1));
-  /*
-   add the map version to a new card (create a new panel for each card and then
-   add it to the mappanel NOT the main panel otherwise everthing gets messed up) :P
-  */
   c.gridx = 2;
   c.gridy = 0;
   c.weightx = 10.0;
   c.weighty = 15.0;
   mappanel.setBackground(Color.RED);
-
-  JPanel mapCard = new JPanel();
-  mapCard.add(map);
-
-  JPanel kitchenCard = new JPanel();
-  kitchenCard.add(kitchen);
-
-  JPanel libraryCard = new JPanel();
-  libraryCard.add(library);
-
-  mappanel.add(mapCard, "mapCard");
-  mappanel.add(kitchenCard, "kitchenCard");
-  mappanel.add(libraryCard,"libraryCard");
-
-  CardLayout cardLayout = (CardLayout) mappanel.getLayout();
-
-  cardLayout.show(mappanel, "mapCard");
-  //cardLayout.show(mappanel, "libraryCard");
-  //cardLayout.show(mappanel, "kitchenCard");
-
-
+  mappanel.add(map);
   mainPanel.add(mappanel,c);
 
 
 
 //Add answer Panel--------------------------------------------------------------
   JPanel answerpanel = new JPanel(new CardLayout());
-//mcq style card
+
+/** mcq style card
+*   Middle center panel
+*/
   JPanel mcq = new JPanel();
   mcq.setLayout(new GridLayout(5,0,1,1));
   mcq.add(new JButton("Button 1"));
@@ -173,7 +165,11 @@ public void opening()
   mainPanel.add(answerpanel,c);
 
 
-//Add button panel--------------------------------------------------------------
+/**Add button panel--------------------------------------------------------------
+*   Middle right panel
+*   1x space among columns
+*   0.5x space among rows
+*/
   JPanel buttonpanel = new JPanel();
   buttonpanel.setLayout(new GridLayout(9,9,0,0));
   c.gridx = 2;
@@ -186,7 +182,7 @@ public void opening()
   buttonpanel.add(getclue);
   mainPanel.add(buttonpanel,c);
 
-//Add actionlisnter to JButton--------------------------------------------------
+//Add actionlistener to JButton--------------------------------------------------
    //quitB = new ActionListener();
    //getHintB = new ActionListener();
    quitbutton.addActionListener(this);
@@ -194,7 +190,11 @@ public void opening()
    getclue.addActionListener(this);
    getclue.setActionCommand("Get Hint");
 
-//Add timer panel---------------------------------------------------------------
+/**Add timer panel---------------------------------------------------------------
+*   Entire bottom panel
+*   3x space among columns
+*   1x space among rows
+*/
 JPanel TimerR = new TimerR();
 CountDownProgressBar cdp = new CountDownProgressBar();
 TimerR.add(cdp.progressBar);
@@ -206,7 +206,8 @@ c.gridwidth = GridBagConstraints.REMAINDER;
 TimerR.setBackground(Color.PINK);
 mainPanel.add(TimerR,c);
 
-// mainframe set up-------------------------------------------------------------
+/** mainframe set up-------------------------------------------------------------
+*/
   mainframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   mainframe.getContentPane().add(mainPanel);
   mainframe.pack();
@@ -215,6 +216,8 @@ mainPanel.add(TimerR,c);
 
   }
 
+/**  Implementing riddles into GUI-------------------------------------------------------------
+*/
 
   public void actionPerformed(ActionEvent e)
   {
