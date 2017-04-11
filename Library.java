@@ -1,3 +1,4 @@
+//package rooms;
 import java.util.Scanner;
 import java.util.Random;
 import java.io.File;
@@ -17,6 +18,7 @@ import java.util.*;
 *There are no privacy leaks in this code because the entire instance of a class
 *is never returned to another class, only individual instance variables are returned.
 */
+
 public class Library
 {
   //initialize keyboard and public variables gameOn (controls if level runs) and lives (differ depending on difficulty)
@@ -36,6 +38,32 @@ public class Library
 *8 riddles that will display one after another if the previous answer is right
 *returns: String of new riddle depending on if answers are right
 */
+public String IntroDescription() {
+  String iDescription, iDescription1, iDescription2, iDescription3;
+  try {
+    fr = new FileReader("intro.txt");
+    br = new BufferedReader(fr);
+    br = new BufferedReader(new FileReader("intro.txt"));
+    while ((line = br.readLine()) != null) {
+      name.add(line);
+    }
+    namesArray = name.toArray(new String[name.size()]);
+    iDescription1 = name.get(0);
+    iDescription2 = name.get(1);
+    iDescription3 = name.get(2);
+    iDescription = (iDescription1 + "\n" + iDescription2 + "\n" + iDescription3);
+  }
+  catch (IndexOutOfBoundsException e) {
+  iDescription = "Index is out of bounds";
+  }
+  catch (FileNotFoundException e) {
+  iDescription = "File is not found";
+  }
+  catch (IOException e) {
+  iDescription = "IOexception arose";
+  }
+  return iDescription;
+}
 /**
 *Displays description of library room from text file
 */

@@ -1,0 +1,3 @@
+In this adventure game, you must obtain keys to escape from rooms. 
+As you play this game. you will see that each room contains different games that require different skills to complete.
+A timer will countdown as you progress. 

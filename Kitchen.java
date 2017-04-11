@@ -1,7 +1,7 @@
 //@author Rumika Mascarenhas
 // Room Kitchen
 // goal: obtain key2
-
+//package rooms;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.awt.event.*;
