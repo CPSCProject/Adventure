@@ -3,6 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import GUI.TimerR;
+import rooms.Kitchen;
+import rooms.Library;
+
 
 
 public class Graphics extends JFrame implements ActionListener
@@ -18,7 +22,7 @@ JPanel questionpanel; //01
 JPanel mappanel; //02
 JPanel answerpanel; //11
 JPanel buttonpanel; //12
-JPanel timerpanel; //20
+JPanel TimerR; //20
 JTextArea storyT;
 JButton quitbutton;
 JButton getclue;
@@ -193,14 +197,16 @@ public void opening()
    getclue.setActionCommand("Get Hint");
 
 //Add timer panel---------------------------------------------------------------
-  JPanel timerpanel = new JPanel();
-  c.gridx = 0;
-  c.gridy = 2;
-  c.weightx = 3.0;
-  c.weighty = 1.0;
-  c.gridwidth = GridBagConstraints.REMAINDER;
-  timerpanel.setBackground(Color.BLACK);
-  mainPanel.add(timerpanel,c);
+JPanel TimerR = new TimerR();
+CountDownProgressBar cdp = new CountDownProgressBar();
+TimerR.add(cdp.progressBar);
+c.gridx = 0;
+c.gridy = 2;
+c.weightx = 3.0;
+c.weighty = 1.0;
+c.gridwidth = GridBagConstraints.REMAINDER;
+TimerR.setBackground(Color.PINK);
+mainPanel.add(TimerR,c);
 
 // mainframe set up-------------------------------------------------------------
   mainframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -279,6 +285,48 @@ public void opening()
         storyT.setText(puzzle8menu);
         input.selectAll();
       }
+//----------------------KITCHEN----------------------------------------------
+      String choice = input.getText();
+      if(choice.equals("t") || choice.equals("c")){
+        Kitchen key2 = new Kitchen();
+        String table_menu = key2.KitchenExploreTable(choice);
+        storyT.setText(table_menu);
+        System.out.println("choice is:" + choice);
+        //input.setText(null);
+        input.selectAll();
+        //Boolean table = false;
+      }
+      //Displays menu for the table. Player can pick paper or knife to store in the inventory.
+        String choice2 = choice;
+        Kitchen key2_paper = new Kitchen();
+        if(choice2.equals("k")|| choice2.equals("p")){ //if statement to prevent it from skipping menus.
+        String paper_menu = key2_paper.KitchenExplorePaper(choice2);
+        storyT.setText(paper_menu);
+        System.out.println("choice2 is:" + choice2);
+        //input.setText(null);
+        input.selectAll();
+      }
+
+      //Displays menu for the cabinet. Player can try to unlock the.
+      String choice3 = choice2;
+      Kitchen key2_cabinet = new Kitchen();
+      if(choice3.equals("e")|| choice3.equals("l")){
+      String cabinet_menu = key2_cabinet.KitchenExploreCabinet(choice3);
+      storyT.setText(cabinet_menu);
+      System.out.println("choice3 is:" + choice3);
+      //input.setText(null);
+      input.selectAll();
+    }
+
+    String choice4 = choice3;
+    Kitchen key2_code = new Kitchen();
+    if(choice4.equals("345")|| choice4.equals("987")){
+    String code_menu = key2_code.KitchenExploreCode(choice4);
+    storyT.setText(code_menu);
+    System.out.println("choice4 is:" + choice3);
+    //input.setText(null);
+    input.selectAll();
+  }
 }
 
   public static void main(String[]args)
