@@ -8,14 +8,12 @@ import rooms.Kitchen;
 import rooms.Library;
 
 /**
-* The Graphics class creates the GUI portion of the game.
-* The Graphics class first creates the main JFrame window and adds JPanels in
-* a grid layout to the JFrame window. The size of the JPanels are determined by
-*
-*
-*
 * @author  Erika Fung, Rumika Mascarenhas, Neera Phell, John Kim, Jiahe Huang
 *
+* The Graphics class creates the GUI portion of the game.
+* The Graphics class first creates the main JFrame window and adds JPanels in
+* a gridbag layout to the JFrame window. The size of the JPanels are determined by
+* their weightx and weighty
 *
 */
 
