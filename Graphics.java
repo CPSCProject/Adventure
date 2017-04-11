@@ -2,12 +2,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
-//if you do have packaging delete lines 7-9
-import GUI.TimerR;
-import rooms.Kitchen;
-import rooms.Library;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.*;
+import java.util.*;
 
 
 public class Graphics extends JFrame implements ActionListener
@@ -23,13 +23,46 @@ JPanel questionpanel; //01
 JPanel mappanel; //02
 JPanel answerpanel; //11
 JPanel buttonpanel; //12
-JPanel TimerR; //20
+JPanel timerpanel; //20
 JTextArea storyT;
 JButton quitbutton;
 JButton getclue;
 JTextField input;
 ActionListener quitB;
 ActionListener getHintB;
+String line;
+BufferedReader br = null;
+FileReader fr = null;
+java.util.List<String> name = new ArrayList<String>();
+
+String[] namesArray;
+
+public String libraryDescription() {
+	  String lDescription, lDescription1, lDescription2, lDescription3;
+	  try {
+	    fr = new FileReader("Introduction.txt");
+	    br = new BufferedReader(fr);
+	    br = new BufferedReader(new FileReader("Introduction.txt"));
+	    while ((line = br.readLine()) != null) {
+	      name.add(line);
+	    }
+	    namesArray = name.toArray(new String[name.size()]);
+	    lDescription1 = name.get(1);
+	    lDescription2 = name.get(2);
+	    lDescription3 = name.get(3);
+	    lDescription = (lDescription1 + "\n" + lDescription2 + "\n" + lDescription3);
+	  }
+	  catch (IndexOutOfBoundsException e) {
+	  lDescription = "Index is out of bounds";
+	  }
+	  catch (FileNotFoundException e) {
+	  lDescription = "File is not found";
+	  }
+	  catch (IOException e) {
+	  lDescription = "IOexception arose";
+	  }
+	  return lDescription;
+	}
 
 
 public void opening()
@@ -39,6 +72,10 @@ public void opening()
   JPanel mainPanel = new JPanel(new GridBagLayout());
   GridBagConstraints c = new GridBagConstraints();
   Font basicfont = new Font("Comic Sans", Font.PLAIN, 60);
+//------------------------------------------------------------------------------
+
+
+
 //add user status---------------------------------------------------------------
   JPanel userstatus = new JPanel();
   c.gridx = 0;
@@ -57,9 +94,13 @@ public void opening()
   c.weightx = 4.0;
   c.weighty = 15.0;
   c.fill = GridBagConstraints.BOTH;
-  Library key1desc = new Library();
-  String lDescription = key1desc.libraryDescription();
+  //story.add(new JTextArea("This is where the room description will go."));
+  
+  
+  //Graphics roomDescription = new Graphics();-------------------------------------
+  String lDescription = initialmethod();
   story.add(new JTextArea(lDescription));
+ // input.selectAll();
   story.setBackground(Color.YELLOW);
   mainPanel.add(story,c);
 
@@ -198,16 +239,14 @@ public void opening()
    getclue.setActionCommand("Get Hint");
 
 //Add timer panel---------------------------------------------------------------
-JPanel TimerR = new TimerR();
-CountDownProgressBar cdp = new CountDownProgressBar();
-TimerR.add(cdp.progressBar);
-c.gridx = 0;
-c.gridy = 2;
-c.weightx = 3.0;
-c.weighty = 1.0;
-c.gridwidth = GridBagConstraints.REMAINDER;
-TimerR.setBackground(Color.PINK);
-mainPanel.add(TimerR,c);
+  JPanel timerpanel = new JPanel();
+  c.gridx = 0;
+  c.gridy = 2;
+  c.weightx = 3.0;
+  c.weighty = 1.0;
+  c.gridwidth = GridBagConstraints.REMAINDER;
+  timerpanel.setBackground(Color.BLACK);
+  mainPanel.add(timerpanel,c);
 
 // mainframe set up-------------------------------------------------------------
   mainframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -286,53 +325,84 @@ mainPanel.add(TimerR,c);
         storyT.setText(puzzle8menu);
         input.selectAll();
       }
-//----------------------KITCHEN----------------------------------------------
-      String choice = input.getText();
-      if(choice.equals("t") || choice.equals("c")){
-        Kitchen key2 = new Kitchen();
-        String table_menu = key2.KitchenExploreTable(choice);
-        storyT.setText(table_menu);
-        System.out.println("choice is:" + choice);
-        //input.setText(null);
-        input.selectAll();
-        //Boolean table = false;
-      }
-      //Displays menu for the table. Player can pick paper or knife to store in the inventory.
-        String choice2 = choice;
-        Kitchen key2_paper = new Kitchen();
-        if(choice2.equals("k")|| choice2.equals("p")){ //if statement to prevent it from skipping menus.
-        String paper_menu = key2_paper.KitchenExplorePaper(choice2);
-        storyT.setText(paper_menu);
-        System.out.println("choice2 is:" + choice2);
-        //input.setText(null);
-        input.selectAll();
-      }
-
-      //Displays menu for the cabinet. Player can try to unlock the.
-      String choice3 = choice2;
-      Kitchen key2_cabinet = new Kitchen();
-      if(choice3.equals("e")|| choice3.equals("l")){
-      String cabinet_menu = key2_cabinet.KitchenExploreCabinet(choice3);
-      storyT.setText(cabinet_menu);
-      System.out.println("choice3 is:" + choice3);
-      //input.setText(null);
-      input.selectAll();
-    }
-
-    String choice4 = choice3;
-    Kitchen key2_code = new Kitchen();
-    if(choice4.equals("345")|| choice4.equals("987")){
-    String code_menu = key2_code.KitchenExploreCode(choice4);
-    storyT.setText(code_menu);
-    System.out.println("choice4 is:" + choice3);
-    //input.setText(null);
-    input.selectAll();
-  }
 }
+//-----------------------------------------------------------------------------
+  public String initialmethod(){
+	    String puzzle2 = "error";
+	    String puzzle3, puzzle4, puzzle5;
+	    String puzzleReturn = "anything";
+	        try {
+	          fr = new FileReader("Description.txt");
+	          br = new BufferedReader(fr);
+	          br = new BufferedReader(new FileReader("Description.txt"));
+	          while ((line = br.readLine()) != null) {
+	            name.add(line);
+	          }
+	          namesArray = name.toArray(new String[name.size()]);
+	          puzzle2 = name.get(0);
+	          puzzle3 = name.get(1);
+	          puzzle4 = name.get(2);
+	          puzzle5 = name.get(3);
+	          puzzleReturn = (puzzle2 + "\n" + puzzle3 + "\n" + puzzle4 + "\n" + puzzle5);
+	        }
+	      catch (IndexOutOfBoundsException e) {
+	        puzzle2 = "Index is out of bounds";
+	      }
+	      catch (FileNotFoundException e) {
+	        puzzle2 = "File is not found";
+	      }
+	      catch (IOException e) {
+	        puzzle2 = "IOexception arose";
+	      }  
+	        //puzzle2 = "Correct! \nRiddle 3: Name an eight letter word that has kst in the middle, \nin the beginning, and at the end. \n1. instand \n2. kstkstkst";//answer is correct
+
+	      //String puzzle2return = puzzleReturn;
+	      return puzzleReturn;
+	    }
+  
+  public String KitchenDescription(){
+	    String puzzle2 = "error";
+	    String puzzle6, puzzle7, puzzle8;
+	    String puzzleReturn2 = "anything";
+	        try {
+	          fr = new FileReader("Description.txt");
+	          br = new BufferedReader(fr);
+	          br = new BufferedReader(new FileReader("Description.txt"));
+	          while ((line = br.readLine()) != null) {
+	            name.add(line);
+	          }
+	          namesArray = name.toArray(new String[name.size()]);
+	          puzzle6 = name.get(4);
+	          puzzle7 = name.get(5);
+	          puzzle8 = name.get(6);
+	          puzzleReturn2 = (puzzle6 + "\n" + puzzle7 + "\n" + puzzle8);
+	        }
+	      catch (IndexOutOfBoundsException e) {
+	        puzzle2 = "Index is out of bounds";
+	      }
+	      catch (FileNotFoundException e) {
+	        puzzle2 = "File is not found";
+	      }
+	      catch (IOException e) {
+	        puzzle2 = "IOexception arose";
+	      }  
+	        //puzzle2 = "Correct! \nRiddle 3: Name an eight letter word that has kst in the middle, \nin the beginning, and at the end. \n1. instand \n2. kstkstkst";//answer is correct
+
+	      //String puzzle2return = puzzleReturn;
+	      return puzzleReturn2;
+	    }
+  
+  
 
   public static void main(String[]args)
   {
      Graphics game = new Graphics();
      game.opening();
+     
   }
 }
+
+
+
+
+

@@ -140,44 +140,29 @@ public String KitchenExploreTable(String input)
 /*
   if(first_input.equals("(2) Try to open the Cabinet."))
   {
-
     Object[] possibleValues3 = {"(1) try to unlock the door.", "(2) Go to the table."};
-
    cabinet_input = (String)JOptionPane.showInputDialog(null,
                   "The cabinet is locked...it needs a code! Choose your move: ", "Input",
                   JOptionPane.INFORMATION_MESSAGE, null,
                   possibleValues3, possibleValues3[0]);
-
-
-
-
     if(cabinet_input.equals("(1) try to unlock the door."))
     {
       String code =
           JOptionPane.showInputDialog(" Enter your guess for the code:  ");
-
-
-
       if(code.equals("345"))
       {
         String key_message = "The door is unlocked and the key is obtained!" ;
             JOptionPane.showMessageDialog(null , key_message);
-
         key2 = true;
         break;
       }
-
       else
       {
         String key_message_fail = "The door remains locked." ;
             JOptionPane.showMessageDialog(null , key_message_fail);
       }
-
     }
-
-
   }
-
   }
   return(key2);*/
 }
