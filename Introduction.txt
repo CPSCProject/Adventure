@@ -1,0 +1,1 @@
+In this adventure game, you must obtain keys to escape from this room. as you play this game. you will see that each room contains different games that requires different skills to complete. Timer will be set based on the diffculty that you choose. you will lose lives if the timer is set to zero. 
