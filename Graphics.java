@@ -191,9 +191,9 @@ public void opening()
   c.weightx = 0.5;
   buttonpanel.setBackground(Color.BLUE);
   JButton quitbutton = new JButton("Quit Game");
-  JButton getclue = new JButton("Get Hint");
+  //JButton getclue = new JButton("Get Hint");
   buttonpanel.add(quitbutton);
-  buttonpanel.add(getclue);
+  //buttonpanel.add(getclue);
   mainPanel.add(buttonpanel,c);
 
 //Add actionlisnter to JButton--------------------------------------------------
@@ -201,8 +201,8 @@ public void opening()
    //getHintB = new ActionListener();
    quitbutton.addActionListener(this);
    quitbutton.setActionCommand("Quit Game");
-   getclue.addActionListener(this);
-   getclue.setActionCommand("Get Hint");
+   //getclue.addActionListener(this);
+   //getclue.setActionCommand("Get Hint");
 
 //Add timer panel---------------------------------------------------------------
 JPanel TimerR = new TimerR();
